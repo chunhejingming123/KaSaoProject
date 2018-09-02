@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_49"
+        android:gravity="center"
+        android:text="@string/qintaiqimao"
+        android:textColor="@color/color_333333"
+        android:textSize="@dimen/dimen_18" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:overScrollMode="never"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_activite"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:scaleType="matrix"
+                android:src="@drawable/bg_top_activite" />
+
+            <TextView
+                android:id="@+id/tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_28"
+                android:lineSpacingExtra="@dimen/dimen_3"
+                android:paddingLeft="@dimen/dimen_47"
+                android:paddingRight="@dimen/dimen_47"
+                android:text="dfdddddd"
+                android:textColor="@color/white"
+                android:textSize="@dimen/dimen_14" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dimen_47"
+                android:layout_marginRight="@dimen/dimen_47"
+                android:layout_marginTop="@dimen/dimen_25"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/dimen_15"
+                    android:text="@string/a1a2jia"
+                    android:textSize="@dimen/dimen_15"
+                    android:textStyle="bold" />
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_130"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="@dimen/dimen_30"
+                    android:layout_marginLeft="@dimen/dimen_10"
+                    android:layout_marginRight="@dimen/dimen_10"
+                    android:layout_marginTop="@dimen/dimen_15">
+
+                    <ImageView
+                        android:id="@+id/ivshenfen"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop" />
+
+                    <FrameLayout
+                        android:id="@+id/viewPhoto"
+                        android:layout_width="@dimen/dimen_160"
+                        android:layout_height="@dimen/dimen_110"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@color/color_ddf4ff">
+
+                        <ImageView
+                            android:id="@+id/ivPhoto"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:src="@drawable/icon_addid" />
+                    </FrameLayout>
+                </FrameLayout>
+
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/dimen_15"
+                android:gravity="left"
+                android:paddingLeft="@dimen/dimen_47"
+                android:paddingRight="@dimen/dimen_47"
+                android:text="@string/tips1"
+                android:textColor="@color/white"
+                android:textSize="@dimen/dimen_14" />
+
+            <ImageView
+
+android:id="@+id/viSumbit"                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/dimen_36"
+                android:scaleType="fitCenter"
+                android:src="@drawable/btn_ac_summbit" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_50" />
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>

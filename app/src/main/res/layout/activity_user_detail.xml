@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/user_bg" />
+
+    <RelativeLayout
+        android:id="@+id/rl_titlebar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_48">
+
+        <LinearLayout
+            android:id="@+id/ll_back"
+            android:layout_width="@dimen/dimen_50"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:background="@drawable/ll_bg_white_red2"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/dimen_10">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/icon_back" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_18" />
+
+    </RelativeLayout>
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dimen_35"
+        android:layout_marginRight="@dimen/dimen_35"
+        android:layout_marginTop="@dimen/dimen_190"
+        android:background="@drawable/use_info_bg">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_nickName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginRight="@dimen/dimen_115"
+                android:layout_marginTop="@dimen/dimen_13"
+                android:includeFontPadding="false"
+                android:textColor="@color/color_191818"
+                android:textSize="@dimen/text_15"
+                tools:text="nickname" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dimen_25"
+                android:drawablePadding="@dimen/dimen_5"
+                android:drawableRight="@drawable/icon_base_info"
+                android:text="@string/base_info"
+                android:textColor="@color/color_191818"
+                android:textSize="@dimen/text_14" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dimen_25"
+                android:layout_marginTop="@dimen/dimen_20">
+
+                <TextView
+                    android:id="@+id/tvName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/icon_user_name"
+                    android:drawablePadding="@dimen/dimen_5"
+                    android:gravity="center_vertical"
+                    android:text="@string/userName"
+                    android:textColor="@color/color_333333"
+                    android:textSize="@dimen/text_13" />
+
+                <TextView
+                    android:id="@+id/tvUserName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dimen_15"
+                    android:layout_toRightOf="@+id/tvName"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/color_333333"
+                    android:textSize="@dimen/text_13"
+                    tools:text="@string/userName" />
+
+                <TextView
+                    android:id="@+id/tvSex"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toLeftOf="@+id/tvUseSex"
+                    android:drawableLeft="@drawable/icon_user_sex"
+                    android:drawablePadding="@dimen/dimen_5"
+                    android:gravity="center_vertical"
+                    android:text="@string/sex"
+                    android:textColor="@color/color_333333"
+                    android:textSize="@dimen/text_13" />
+
+                <TextView
+                    android:id="@+id/tvUseSex"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginLeft="@dimen/dimen_15"
+                    android:layout_marginRight="@dimen/dimen_25"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/color_333333"
+                    android:textSize="@dimen/text_13"
+                    tools:text="@string/sex" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dimen_25"
+                android:layout_marginTop="@dimen/dimen_20">
+
+                <TextView
+                    android:id="@+id/tvAdress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/icon_user_adress"
+                    android:drawablePadding="@dimen/dimen_5"
+                    android:gravity="center_vertical"
+                    android:text="@string/adress"
+                    android:textColor="@color/color_333333"
+                    android:textSize="@dimen/text_13" />
+
+                <TextView
+                    android:id="@+id/tvUserAdress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dimen_15"
+                    android:layout_toRightOf="@+id/tvAdress"
+                    android:gravity="center_vertical"
+                    android:maxLines="1"
+                    android:textColor="@color/color_333333"
+                    android:textSize="@dimen/text_13"
+                    tools:text="@string/userName" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dimen_30"
+                android:layout_marginLeft="@dimen/dimen_25"
+                android:layout_marginTop="@dimen/dimen_20">
+
+                <TextView
+                    android:id="@+id/tvTel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/icon_user_tel"
+                    android:drawablePadding="@dimen/dimen_5"
+                    android:gravity="center_vertical"
+                    android:text="@string/tel"
+                    android:textColor="@color/color_333333"
+                    android:textSize="@dimen/text_13" />
+
+                <TextView
+                    android:id="@+id/tvUserTel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dimen_15"
+                    android:layout_toRightOf="@+id/tvTel"
+                    android:gravity="center_vertical"
+                    android:maxLines="1"
+                    android:textColor="@color/color_333333"
+                    android:textSize="@dimen/text_13"
+                    tools:text="@string/userName" />
+            </RelativeLayout>
+        </LinearLayout>
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="@dimen/dimen_70"
+        android:layout_height="@dimen/dimen_70"
+        android:layout_gravity="right"
+        android:layout_marginRight="@dimen/dimen_50"
+        android:layout_marginTop="@dimen/dimen_150"
+        android:background="@drawable/bg_user_avater_shadow">
+
+
+        <com.kasao.qintai.widget.CircleImageView
+            android:id="@+id/cirlceAvater"
+            android:layout_width="@dimen/dimen_66"
+            android:layout_height="@dimen/dimen_66"
+            android:layout_gravity="center"
+            app:civ_border_color="@color/white"
+            app:civ_border_width="@dimen/dimen_2"
+            tools:background="@drawable/bg_default" />
+
+    </FrameLayout>
+
+
+    <FrameLayout
+        android:id="@+id/viewCall"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="@dimen/dimen_40"
+        android:layout_marginLeft="@dimen/dimen_35"
+        android:layout_marginRight="@dimen/dimen_35"
+        android:background="@drawable/selector_slide_tel_link">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/dimen_14"
+            android:drawableLeft="@drawable/icon_big_call"
+            android:drawablePadding="@dimen/dimen_10"
+            android:gravity="center"
+            android:text="@string/tel_link"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_18" />
+    </FrameLayout>
+</FrameLayout>

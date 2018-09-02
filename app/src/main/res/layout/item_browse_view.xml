@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/dimen_5"
+    android:background="@drawable/ll_bg_white_gray5"
+    android:orientation="horizontal"
+    android:paddingBottom="@dimen/dimen_6"
+    android:paddingTop="@dimen/dimen_6">
+
+    <com.kasao.qintai.widget.CircleImageView
+        android:id="@+id/circle_avater"
+        android:layout_width="@dimen/dimen_38"
+        android:layout_height="@dimen/dimen_38"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="@dimen/dimen_15"
+        android:layout_marginRight="@dimen/dimen_15"
+        android:background="@drawable/bg_default" />
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:textColor="@color/color_414040"
+        android:textSize="@dimen/dimen_15"
+        tools:text="@string/a1a2jia" />
+
+    <TextView
+        android:id="@+id/tv_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginRight="@dimen/dimen_15"
+        android:layout_weight="1.0"
+        android:drawablePadding="@dimen/dimen_8"
+        android:drawableRight="@drawable/icon_arrow_right"
+        android:gravity="right"
+        android:textColor="@color/color_cc969595"
+        android:textSize="@dimen/dimen_11"
+        tools:text="@string/a1a2jia" />
+</LinearLayout>

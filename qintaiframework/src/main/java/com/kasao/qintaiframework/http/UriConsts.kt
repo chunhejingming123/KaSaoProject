@@ -5,6 +5,12 @@ package com.kasao.qintaiframework.http
  * 日期：2018/8/18 0018:09
  */
 
-object UriConsts {
-    val BASE_URL = "http://api.qtmeike.com";
+class UriConsts {
+
+    companion object {
+        val BASE_URL = "http://api.qtmeike.com";
+        val TESTAPI = "http://192.168.1.200:81"
+        val NEWdETAIL = "/Api/NewsApi/getNewsInfo?id="
+    }
+
 }

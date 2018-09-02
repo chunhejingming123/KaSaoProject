@@ -16,7 +16,6 @@ import java.util.concurrent.TimeUnit
 object Api {
     private val DEFAULT_TIMEOUT = 10L
     private var SERVICE: ApiService? = null
-
     @JvmStatic
     val default: ApiService
         get() {

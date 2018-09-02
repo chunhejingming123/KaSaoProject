@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/viewItem"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/ll_bg_white_gray5"
+    android:orientation="horizontal"
+    android:paddingBottom="@dimen/dimen_20"
+    android:paddingTop="@dimen/dimen_15">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_weight="1.0">
+
+        <TextView
+            android:id="@+id/tvIntro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dimen_15"
+            android:textColor="@color/color_333333"
+            android:textSize="@dimen/dimen_14"
+            tools:text="sssssss" />
+
+        <TextView
+            android:id="@+id/tvPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvIntro"
+            android:layout_marginLeft="@dimen/dimen_15"
+            android:layout_marginTop="@dimen/dimen_5"
+            android:maxLines="2"
+            android:textColor="@color/color_33333350"
+            android:textSize="@dimen/dimen_14"
+            tools:text="ddddddddd" />
+    </RelativeLayout>
+
+    <FrameLayout
+        android:id="@+id/viewConsult"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginRight="@dimen/dimen_15"
+        android:background="@drawable/xundijia">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dimen_10"
+            android:layout_marginLeft="@dimen/dimen_15"
+            android:layout_marginRight="@dimen/dimen_15"
+            android:layout_marginTop="@dimen/dimen_10"
+            android:drawableLeft="@drawable/xundijia1"
+            android:drawablePadding="@dimen/dimen_5"
+            android:text="@string/xundijia"
+            android:textColor="@color/color_333333"
+            android:textSize="@dimen/dimen_15" />
+    </FrameLayout>
+</LinearLayout>

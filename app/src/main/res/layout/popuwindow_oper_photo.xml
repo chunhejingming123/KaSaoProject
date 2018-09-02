@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#66000000"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginBottom="@dimen/dimen_20"
+        android:layout_marginLeft="@dimen/dimen_10"
+        android:layout_marginRight="@dimen/dimen_10"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvTakePhoto"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_44"
+            android:background="@drawable/shape_white_round6"
+            android:gravity="center"
+            android:text="@string/takePhote"
+            android:textColor="@color/color_4A4A4A"
+            android:textSize="@dimen/text_16" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.33dp" />
+
+        <TextView
+            android:id="@+id/tvPhoteWall"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_44"
+            android:background="@drawable/shape_white_round6"
+            android:gravity="center"
+            android:text="@string/photoWall"
+            android:textColor="@color/color_4A4A4A"
+            android:textSize="@dimen/text_16" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_10" />
+
+        <TextView
+            android:id="@+id/tvCancle"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_44"
+            android:background="@drawable/shape_white_round6"
+            android:gravity="center"
+            android:text="@string/text_cancel"
+            android:textColor="@color/color_4A4A4A"
+            android:textSize="@dimen/text_16" />
+
+    </LinearLayout>
+</FrameLayout>

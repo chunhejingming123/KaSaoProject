@@ -1,3 +1,190 @@
 <resources>
     <string name="app_name">卡嫂</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="moreparmar">更多参数</string>
+    <string name="reportalert">您于%1$s发布的信息\n &#32;%2$s</string>
+    <string name="report_user">尊敬的用户：%1$s</string>
+    <string name="reportReson">举报原因:%1$s</string>
+    <string name="todayRecomment">今日推荐</string>
+    <string name="cartypechose">车型筛选</string>
+    <string name="hot">热度</string>
+    <string name="mal">马力</string>
+    <string name="xundijia">询底价</string>
+    <string name="search_no_carcategory">即将上线，敬请关注</string>
+    <string name="recommendno">暂无推荐信息</string>
+    <string name="nodata_bookcar">您还没有预订车辆</string>
+    <string name="hotBrand">热门品牌</string>
+    <string name="check_more">查看更多</string>
+    <string name="hotRank">热销排行</string>
+    <string name="zixun_price">询底价</string>
+    <string name="search_no_more">很遗憾,没有找到您想要的</string>
+    <string name="parmars_detail">参数详情</string>
+    <string name="drive_style">驱动方式</string>
+    <string name="maxSpeed">最高车速</string>
+    <string name="carDetail">车辆详情</string>
+    <string name="service_comment">为您推荐</string>
+    <string name="same_recommend">相似推荐</string>
+    <string name="cardetail">车辆详情</string>
+    <string name="go_publish">去发布</string>
+    <string name="supre_money">超值价</string>
+    <string name="tel_link">电话咨询</string>
+    <string name="pre_look_car">意向看车</string>
+    <string name="leave_moble">留下您的手机号</string>
+    <string name="leave_callback">请留下您的手机号码 我们将尽快把低价反馈给您</string>
+    <string name="car_parmars">参数配置</string>
+    <string name="input_moble">请输入正确手机号码</string>
+    <string name="deal_price">本车可议价</string>
+    <string name="carphoto">车辆实拍</string>
+    <string name="caroutphoto">车辆外观</string>
+    <string name="carbottomphoto">底盘</string>
+    <string name="buyKnow">购车须知</string>
+    <string name="detail">详情</string>
+    <string name="comment">评论</string>
+    <string name="realPhoto">实拍</string>
+    <string name="recomment">推荐</string>
+    <string name="notices">须知</string>
+    <string name="parmars">参数</string>
+    <string name="online_buy">在线预订</string>
+    <string name="car_purpuse">车辆用途</string>
+    <string name="title_shop">门店信息</string>
+    <string name="shopde">门店详情</string>
+    <string name="tothere">到这儿去</string>
+    <string name="shopintroduce">门店介绍</string>
+
+    <string name="three_step_buy">三步购车</string>
+    <string name="buy_carstep">1.提交基本信息在线预订\n2.获取购车优惠码\n3.到店看车,付款提车</string>
+    <string name="buy_carway">购车方式</string>
+    <string name="buy_carnum">购车数量</string>
+    <string name="buy_cartime">购车时间</string>
+    <string name="telnum">手机号</string>
+    <string name="newcar_loae">新车贷款</string>
+    <string name="sevenday">7天内</string>
+    <string name="onemonth">1个月内</string>
+    <string name="threemonth">3个月内</string>
+    <string name="newcar_pay">新车全款</string>
+    <string name="alert_carbuynum">请选择购车数量</string>
+    <string name="userName">姓名</string>
+    <string name="submit_preorder">提交预订信息</string>
+    <string name="input_name">请输入您的姓名</string>
+    <string name="title_booksussful">预订成功</string>
+    <string name="tip_booksucess">恭喜您,在线提交预定信息成功\n获得线下购车优惠码</string>
+    <string name="coupon_use_way">优惠码使用说明</string>
+    <string name="tip_coupon_use">1.凭借优惠码到门店购车时使用\n2.请在预计购车时间内到门店提车</string>
+    <string name="shop">门店信息</string>
+
+    <string name="minprice">最低</string>
+    <string name="maxPrice">最高</string>
+    <string name="unit_wan">万</string>
+    <string name="inputminprice">请输入最低价格</string>
+    <string name="inputmaxprice">请输入最高价格</string>
+    <string name="query">确定</string>
+    <string name="usercenter">个人中心</string>
+    <string name="mystore">我的收藏</string>
+    <string name="mycare">我的关注</string>
+    <string name="sboutus">关于我们</string>
+    <string name="myprediect">我的预订</string>
+    <string name="option">意见反馈</string>
+    <string name="msgcenter">消息中心</string>
+    <string name="myallowance">我的补贴金</string>
+    <string name="mySocial">我的卡友圈</string>
+    <string name="titltbook">我的预订</string>
+    <string name="num">数量</string>
+    <string name="gogao">公告</string>
+    <string name="mypublish">我的发布</string>
+    <string name="a1a2jia">A1/A2驾驶证正面</string>
+    <string name="tips1">(图片大小不超过1M，请保证图片识别部分为图片主题部分)</string>
+    <string name="qintaiqimao">钦泰汽贸</string>
+    <string name="takePhote">拍照</string>
+    <string name="photoWall">从手机选择</string>
+    <string name="text_cancel">取消</string>
+    <string name="permission_camare">相机权限问题</string>
+    <string name="permission_request_camare">需要开启相机拍照权限才可以执行此操作</string>
+    <string name="perssion_tip">开启手机 自启动管理 设置\n 可以接受更多的信息</string>
+    <string name="success_upload">恭喜您上传成功</string>
+    <string name="tips2">邀请一位好友上传驾驶证即可获得</string>
+    <string name="tips3">10000元购车金补贴已到账，可以在卡嫂-我的 中点击查看</string>
+    <string name="titleSocial">卡友圈</string>
+    <string name="base_info">基本资料</string>
+    <string name="sex">性别</string>
+    <string name="adress">住址</string>
+    <string name="tel">电话</string>
+    <string name="user_info">个人信息</string>
+
+    <string name="addtakeCare">加关注</string>
+    <string name="reportUser">举报该用户</string>
+    <string name="reson_report">请选择举报该用户的原因</string>
+    <string name="falseinfo">虚假信息</string>
+    <string name="falseContent">违规内容</string>
+    <string name="falseTel">虚假电话</string>
+    <string name="henFouce">恶意攻击</string>
+    <string name="ohters">其他</string>
+    <string name="report">举报</string>
+    <string name="delete">删除</string>
+    <string name="summbit">提交</string>
+    <string name="clickzan">点赞</string>
+    <string name="liulan">浏览</string>
+    <string name="reply">回复</string>
+    <string name="fabiao">发表</string>
+    <string name="pinglun">评论</string>
+    <string name="send_sucessful">发布成功</string>
+    <string name="send_error">发布失败</string>
+    <string name="wholook">谁看过</string>
+    <string name="whosupper">谁赞过</string>
+    <string name="title_vistor">访客</string>
+
+    <string name="dialoge_del_msg">确定要删除这条信息么</string>
+    <string name="dialoge_delcomment_msg">确定要删除该条评论么</string>
+    <string name="validatecode">验证码</string>
+    <string name="sendvalidate">发送验证码</string>
+    <string name="tiplogin">点击使用账号密码登录</string>
+    <string name="login">登录</string>
+    <string name="pwd">密&#8195;码</string>
+    <string name="forgetpwd">忘记密码</string>
+    <string name="nocount">没有账号？注册</string>
+    <string name="tiplogincount">点击使用手机号快捷登录</string>
+    <string name="input_validatacode">请输入验证码</string>
+    <string name="input_psd">请输入密码</string>
+    <string name="tip_forgetpwd">忘记密码？重新设置新密码</string>
+    <string name="newpwd">新密码</string>
+    <string name="confirm">确认</string>
+    <string name="pwdless6">请输入密码，不小于6位</string>
+    <string name="input_againpwd">请再次输入密码</string>
+    <string name="tip_pwdnosame">两次输入密码不一样</string>
+    <string name="register">注册</string>
+    <string name="hascountlogin">已有账号？登录</string>
+    <string name="share_to_weixin">微信好友</string>
+    <string name="share_to_friend">朋友圈</string>
+    <string name="shareto">分享到</string>
+
+    <string name="sendbyTime">循环推送</string>
+    <string name="oneTime">仅一次</string>
+    <string name="foutthTime">每一小时自动发布  请选择发布次数</string>
+    <string name="sixthTime">每二小时自动发布  请选择发布次数</string>
+    <string name="threethTime">每三小时自动发布  请选择发布次数</string>
+    <string name="foutth">每一小时自动发布</string>
+    <string name="sixTime">每二小时自动发布</string>
+    <string name="threeTime">每三小时自动发布</string>
+
+    <string name="version_up">发现新版本,快来更新吧</string>
+    <array name="array_order">
+        <item>价格最低</item>
+        <item>价格最高</item>
+        <item>最新发布</item>
+    </array>
+    <array name="array_price">
+        <item>不限</item>
+        <item>5万以下</item>
+        <item>5-8万</item>
+        <item>8-15万</item>
+        <item>15-20万</item>
+        <item>20-25万</item>
+        <item>25-30万</item>
+        <item>30万以上</item>
+    </array>
+    <array name="array_head">
+        <item>排序</item>
+        <item>品牌</item>
+        <item>价格</item>
+        <item>销量</item>
+    </array>
 </resources>

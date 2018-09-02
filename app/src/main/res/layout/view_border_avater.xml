@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/view1"
+    android:layout_width="@dimen/dimen_33"
+    android:layout_height="@dimen/dimen_33"
+    android:layout_gravity="center_vertical">
+
+    <com.kasao.qintai.widget.CircleImageView
+        android:id="@+id/avater"
+        android:layout_width="@dimen/dimen_30"
+        android:layout_height="@dimen/dimen_30"
+        android:layout_gravity="center"
+        tools:background="@drawable/bg_default" />
+</FrameLayout>

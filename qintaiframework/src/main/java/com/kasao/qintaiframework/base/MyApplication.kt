@@ -1,10 +1,22 @@
 package com.kasao.qintaiframework.base
 
 import android.app.Application
+import com.kasao.qintaiframework.until.ScreenUtil
 
-class MyApplication : Application() {
+open class MyApplication : Application() {
+    companion object {
+        val isDebug: Boolean = true
+        var applicaton = Helper.instance
+
+
+    }
+
+    private object Helper {
+        var instance = MyApplication()
+    }
 
     override fun onCreate() {
         super.onCreate()
+        applicaton = this
     }
 }

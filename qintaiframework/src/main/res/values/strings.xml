@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">qintaiframework</string>
     <string name="icon">icon</string>
+    <string name="tabSocal">卡友圈</string>
+    <string name="tabmain">首页</string>
+    <string name="hint_want_car">输入您想要的车</string>
+    <string name="tabUser">我的</string>
+    <string name="footer_list_normal">加载中</string>
+    <string name="loading">加载</string>
 </resources>

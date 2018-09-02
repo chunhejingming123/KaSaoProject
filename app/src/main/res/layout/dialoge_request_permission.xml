@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_gravity="center"
+    android:background="@drawable/shape_top_round_white"
+    android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_marginTop="@dimen/dimen_15"
+            android:text="友情提示"
+            android:layout_marginLeft="@dimen/dimen_15"
+            android:gravity="center_vertical"
+            android:layout_gravity="center_horizontal|left"
+            android:layout_width="wrap_content"
+            android:textColor="@color/color_e43b3b"
+            android:textSize="@dimen/dimen_16"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/tvContent"
+            android:layout_below="@+id/tvTitle"
+            android:layout_margin="@dimen/dimen_15"
+            android:layout_gravity="center_horizontal|left"
+            android:gravity="center_horizontal|left"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/color_3b3939"
+            android:textSize="@dimen/dimen_14"
+            android:text="@string/perssion_tip"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/dimen_5"
+            android:layout_marginBottom="@dimen/dimen_5"
+            android:layout_height="@dimen/dimen_1"
+            android:background="@color/color_eeeeee"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:orientation="horizontal">
+        <Button
+            android:id="@+id/btnCannel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="以后设置"
+            android:textSize="@dimen/dimen_14"
+            android:textColor="@color/color_b3e43b3b"
+            android:background="@null"
+            />
+        <Button
+            android:layout_marginLeft="@dimen/dimen_15"
+            android:id="@+id/btnQuery"
+            android:background="@null"
+            android:textSize="@dimen/dimen_14"
+            android:textColor="@color/color_e43b3b"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="同意开启" />
+            </LinearLayout>
+</LinearLayout>

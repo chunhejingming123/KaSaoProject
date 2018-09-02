@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black50"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/dimen_100"
+        android:gravity="center_horizontal"
+        android:textColor="@color/white"
+        android:text="@string/success_upload"
+        android:textSize="@dimen/dimen_18" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/dimen_8"
+        android:gravity="center_horizontal"
+        android:text="@string/tips2"
+        android:textColor="@color/color_fffda96"
+        android:textSize="@dimen/dimen_15" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/dimen_15"
+        android:scaleType="centerCrop"
+        android:src="@drawable/active_bg3" />
+
+    <ImageView
+        android:id="@+id/btnInvited"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/dimen_10"
+        android:scaleType="centerCrop"
+        android:src="@drawable/btn_ac_invited" />
+</LinearLayout>

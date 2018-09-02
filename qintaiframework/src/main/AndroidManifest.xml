@@ -1,2 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.kasao.qintaiframework" />
+    package="com.kasao.qintaiframework" >
+
+    <application>
+        <activity android:name=".activity.WebActivity" />
+    </application>
+</manifest>

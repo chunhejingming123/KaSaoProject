@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom">
+
+    <LinearLayout
+        android:id="@+id/llview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_45"
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/dimen_15"
+            android:layout_marginRight="@dimen/dimen_12"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvCancel"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1.0"
+                android:paddingLeft="@dimen/dimen_15"
+                android:background="@drawable/ll_bg_white_gray5"
+                android:gravity="center_vertical|left"
+                android:text="@string/text_cancel"
+                android:textColor="@color/color_80302e2e"
+                android:textSize="@dimen/dimen_16" />
+
+            <TextView
+                android:id="@+id/tvReply"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1.0"
+                android:background="@drawable/ll_bg_white_gray5"
+                android:gravity="center"
+                android:text="@string/reply"
+                android:textColor="@color/color_302e2e"
+                android:textSize="@dimen/dimen_16" />
+
+            <TextView
+                android:id="@+id/tvSend"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1.0"
+                android:background="@drawable/ll_bg_white_gray5"
+                android:gravity="center_vertical|right"
+                android:paddingRight="@dimen/dimen_15"
+                android:text="@string/fabiao"
+                android:textColor="@color/color_ee2e3b"
+                android:textSize="@dimen/dimen_16" />
+
+        </LinearLayout>
+
+
+        <EditText
+            android:id="@+id/etMsg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_5"
+            android:background="@null"
+            android:gravity="top"
+            android:hint="@string/pinglun"
+            android:minHeight="@dimen/dimen_130"
+            android:padding="@dimen/dimen_13"
+            android:textColor="@color/color_80302e2e"
+            android:textColorHint="@color/color_80302e2e"
+            android:textSize="@dimen/text_16" />
+
+    </LinearLayout>
+
+</FrameLayout>

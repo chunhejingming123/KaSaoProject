@@ -14,4 +14,99 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="dialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowBackground">@color/android:transparent</item>
+
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <style name="carsystem">
+        <item name="android:windowEnterAnimation">@anim/push_right_in</item>
+        <!-- 指定显示的动画xml -->
+        <item name="android:windowExitAnimation">@anim/push_right_out</item>
+        <!-- 指定消失的动画xml -->
+    </style>
+
+    <style name="ww">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="mm">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="mw">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="line_f7f7f7f">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0.33dp</item>
+        <item name="android:background">@color/color_f7f7f7</item>
+    </style>
+
+    <style name="line_e9e9e9">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0.8dp</item>
+        <item name="android:background">@color/color_e9e9e9</item>
+    </style>
+
+
+    <style name="mypopuwindow_bootom_in">
+        <item name="android:windowEnterAnimation">@anim/dialog_in_from_bottom</item>
+        <!-- 指定显示的动画xml -->
+        <item name="android:windowExitAnimation">@anim/dialog_out_from_bottom</item>
+        <!-- 指定消失的动画xml -->
+    </style>
+
+    <style name="reportText" parent="ww">
+        <item name="android:layout_marginLeft">@dimen/dimen_20</item>
+        <item name="android:layout_marginBottom">@dimen/dimen_15</item>
+        <item name="android:layout_marginTop">@dimen/dimen_16</item>
+        <item name="android:textColor">@color/color_333333</item>
+        <item name="android:textSize">@dimen/dimen_14</item>
+    </style>
+
+    <style name="reportView">
+        <item name="android:layout_width">@dimen/dimen_12</item>
+        <item name="android:layout_height">@dimen/dimen_12</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:layout_marginRight">@dimen/dimen_15</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:background">@drawable/roundee2e3b</item>
+        <item name="android:visibility">gone</item>
+    </style>
+
+    <style name="AnimBottom" parent="@android:style/Animation">
+        <item name="android:windowEnterAnimation">@anim/push_bottom_in</item>
+        <item name="android:windowExitAnimation">@anim/push_bottom_out</item>
+    </style>
+
+    <style name="span1">
+        <item name="android:textColor">@color/color_434141</item>
+        <item name="android:textSize">@dimen/dimen_15</item>
+    </style>
+
+    <style name="span2">
+        <item name="android:textColor">@color/color_434141</item>
+        <item name="android:textSize">@dimen/dimen_12</item>
+    </style>
+
+    <style name="DialogTranslateAnim" parent="@android:style/Animation.Dialog">
+        <item name="android:windowEnterAnimation">@anim/dialog_in_from_bottom</item>
+        <item name="android:windowExitAnimation">@anim/dialog_out_from_bottom</item>
+    </style>
+
+    <style name="span_color272626">
+        <item name="android:textColor">@color/color_272626</item>
+        <item name="android:textSize">@dimen/dimen_15</item>
+    </style>
+
+    <style name="span_colorcc272626">
+        <item name="android:textColor">@color/color_333333</item>
+        <item name="android:textSize">@dimen/dimen_12</item>
+    </style>
 </resources>

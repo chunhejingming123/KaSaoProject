@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <TextView
+        android:id="@+id/include_editex"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dimen_20"
+        android:layout_marginRight="@dimen/dimen_20"
+        android:layout_marginTop="@dimen/dimen_15"
+        android:background="@drawable/shape_round_white70"
+        android:drawablePadding="@dimen/dimen_8"
+        android:drawableRight="@drawable/icon_carsell_search"
+        android:gravity="center_vertical"
+        android:hint="@string/hint_want_car"
+        android:paddingBottom="@dimen/dimen_10"
+        android:paddingLeft="@dimen/dimen_10"
+        android:paddingRight="@dimen/dimen_10"
+        android:paddingTop="@dimen/dimen_8"
+        android:textColorHint="@color/color_757171"
+        android:textSize="@dimen/dimen_14" />
+
+</merge>

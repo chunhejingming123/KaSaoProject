@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/viewExponent"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/color_f7f7f7"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/dimen_12"
+    android:paddingRight="@dimen/dimen_12">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/dimen_50"
+        android:layout_gravity="center_vertical"
+        android:drawablePadding="@dimen/dimen_5"
+        android:gravity="center_vertical"
+        android:includeFontPadding="false"
+        android:text="@string/hotRank"
+        android:textColor="@color/color_313131"
+        android:textSize="@dimen/text_17"
+        android:textStyle="bold" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:descendantFocusability="blocksDescendants">
+
+        <com.kasao.qintai.widget.CustomViewPager
+            android:id="@+id/viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipChildren="false"
+            android:overScrollMode="never" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/viewlinePhone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/dimen_5"
+        android:background="@drawable/border6_white_fill_white"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/dimen_15"
+        android:paddingLeft="@dimen/dimen_8"
+        android:paddingRight="@dimen/dimen_8"
+        android:paddingTop="@dimen/dimen_15">
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/icon_tel_car">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/dimen_25"
+                android:paddingRight="@dimen/dimen_8"
+                android:text="买车请致电"
+                android:textColor="@color/white"
+                android:textSize="@dimen/dimen_15" />
+        </FrameLayout>
+
+
+        <TextView
+            android:id="@+id/tvCall1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/dimen_4"
+            android:layout_marginRight="@dimen/dimen_4"
+            android:layout_weight="1.0"
+            android:background="@drawable/bg_border2_fbe0e2"
+            android:gravity="center"
+            android:padding="@dimen/dimen_2"
+            android:textColor="@color/color_ee2e3b"
+            android:textSize="@dimen/dimen_13"
+            tools:text="12345612344" />
+
+        <TextView
+            android:id="@+id/tvCall2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1.0"
+            android:background="@drawable/bg_border2_fbe0e2"
+            android:gravity="center"
+            android:padding="@dimen/dimen_2"
+            android:textColor="@color/color_ee2e3b"
+            android:textSize="@dimen/dimen_13"
+            tools:text="12345612344" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dimen_120"
+    android:background="@drawable/ll_bg_white_gray5"
+    android:orientation="horizontal">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.33dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/color_eeeeee" />
+
+    <FrameLayout
+        android:id="@+id/view01"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="15dp"
+        android:layout_marginStart="15dp">
+
+        <ImageView
+            android:id="@+id/iv_icon"
+            android:layout_width="@dimen/dimen_153"
+            android:layout_height="@dimen/dimen_97"
+            android:layout_marginTop="@dimen/dimen_2"
+            android:background="@drawable/bg_default"
+            android:scaleType="fitXY" />
+    </FrameLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_97"
+        android:layout_marginLeft="@dimen/dimen_12"
+        android:layout_marginRight="@dimen/dimen_15"
+        android:layout_marginTop="@dimen/dimen_15"
+        android:layout_toRightOf="@+id/view01"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/dimen_2">
+
+        <TextView
+            android:id="@+id/tv_car_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:gravity="left"
+            android:includeFontPadding="false"
+            android:maxLines="3"
+            android:textColor="@color/color_333333"
+            android:textSize="@dimen/dimen_16"
+            tools:text="解放牌" />
+
+
+        <TextView
+            android:id="@+id/tv_car_money"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:includeFontPadding="false"
+            android:maxLines="1"
+            android:paddingBottom="@dimen/dimen_3"
+            android:textColor="@color/color_ee2e3b"
+            android:textSize="@dimen/dimen_16"
+            android:visibility="gone"
+            tools:text="30" />
+
+        <TextView
+            android:id="@+id/tv_rmb"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="@dimen/dimen_3"
+            android:layout_toRightOf="@+id/tv_car_money"
+            android:includeFontPadding="false"
+            android:paddingBottom="@dimen/dimen_4"
+            android:text="RMB"
+            android:textColor="@color/color_ff9c9c"
+            android:textSize="@dimen/dimen_12"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/tv_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="@dimen/dimen_25"
+            android:layout_toRightOf="@+id/tv_rmb"
+            android:paddingBottom="@dimen/dimen_3"
+            android:text="首付10万元"
+            android:textColor="@color/color_ff9c9c"
+            android:textSize="@dimen/dimen_12" />
+    </RelativeLayout>
+
+
+</RelativeLayout>

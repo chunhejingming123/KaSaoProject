@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_f7f7f7"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_49"
+        android:background="@color/white">
+
+        <FrameLayout
+            android:id="@+id/viewBack"
+            android:layout_width="@dimen/dimen_49"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/dimen_15"
+                android:background="@drawable/icon_return_black" />
+        </FrameLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/shopde"
+            android:textColor="@color/color_333333"
+            android:textSize="@dimen/dimen_18" />
+    </FrameLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_8"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/dimen_12">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal">
+
+            <com.kasao.qintai.widget.banner.BannerView
+                android:id="@+id/bannerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/dimen_8"
+                tools:background="@drawable/bg_default" />
+
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/tvName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/dimen_12"
+            android:gravity="center"
+            android:textColor="@color/color_333333"
+            android:textSize="@dimen/dimen_15"
+            tools:text="钦泰2部" />
+
+        <TextView
+            android:id="@+id/tvAdress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="@dimen/dimen_15"
+            android:layout_marginRight="@dimen/dimen_15"
+            android:layout_marginTop="@dimen/dimen_8"
+            android:textColor="@color/color_333333"
+            android:textSize="@dimen/dimen_14"
+            tools:text="sssssssssss" />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/dimen_12">
+
+            <TextView
+                android:id="@+id/tvDistance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:gravity="center"
+                android:textColor="@color/color_333333"
+                android:textSize="@dimen/dimen_13"
+                tools:text="12.1km" />
+
+            <TextView
+                android:id="@+id/tvGothere"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/dimen_12"
+                android:layout_toRightOf="@+id/tvDistance"
+                android:background="@drawable/bg_fill_fbe0e2"
+                android:paddingBottom="@dimen/dimen_5"
+                android:paddingLeft="@dimen/dimen_10"
+                android:paddingRight="@dimen/dimen_10"
+                android:paddingTop="@dimen/dimen_5"
+                android:text="@string/tothere"
+                android:textColor="@color/color_ee2e3b"
+                android:textSize="@dimen/dimen_14" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_8"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:padding="@dimen/dimen_15">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/shopintroduce"
+            android:textColor="@color/color_333333"
+            android:textSize="@dimen/dimen_16" />
+
+        <TextView
+            android:id="@+id/tvIntro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_12"
+            android:textColor="@color/color_333333"
+            android:textSize="@dimen/dimen_14"
+            tools:text="ddddddddddddddddddd" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.0"
+        android:background="@color/color_f7f7f7">
+
+        <FrameLayout
+            android:id="@+id/viewcall"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_55"
+            android:layout_gravity="bottom|center_horizontal"
+            android:background="@color/color_ee2e3b">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center_horizontal"
+                android:layout_margin="@dimen/dimen_14"
+                android:drawableLeft="@drawable/icon_big_call"
+                android:drawablePadding="@dimen/dimen_10"
+                android:gravity="center"
+                android:text="@string/tel_link"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_18" />
+        </FrameLayout>
+    </FrameLayout>
+
+</LinearLayout>

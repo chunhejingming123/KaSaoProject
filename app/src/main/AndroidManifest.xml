@@ -2,12 +2,33 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.kasao.qintai">
 
+    <supports-screens
+        android:anyDensity="true"
+        android:largeScreens="true"
+        android:normalScreens="true"
+        android:smallScreens="true" />
+
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <application
+        android:name=".base.BaseKasaoApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".activity.login.SplashActivity">
@@ -21,6 +42,103 @@
             android:name=".MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:name=".activity.login.GuideActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.main.CarSeriesActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.main.CarDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.main.CarParmarsDeatailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.shop.ShopListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.shop.ShopActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.shop.OnLineOrderActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".activity.shop.BookSuccessActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.main.CarSearcherActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.user.NoticeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.user.OpinionActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.user.MyBookActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.user.SocialActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.active.CarActionActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.active.RectCameraActivity"
+            android:screenOrientation="portrait" />
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.kasao.qintai.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_path" />
+        </provider>
+
+        <activity
+            android:name=".activity.user.UserDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.kayou.ReportFriendActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.kayou.SocialDetailsActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize" />
+        <activity
+            android:name=".activity.ImageActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.kayou.VisitorActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.login.LoginActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden" />
+        <activity
+            android:name=".activity.login.ForgetPwdActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden" />
+        <activity
+            android:name=".activity.login.RegisterActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden" />
+        <activity
+            android:name=".activity.user.ModifyUserActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".wxapi.WXEntryActivity"
+            android:exported="true"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".activity.kayou.PublishSoicalActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".activity.ImageGridActivity"></activity>
     </application>
 
 </manifest>

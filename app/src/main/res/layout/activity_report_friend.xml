@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_f7f7f7"
+    android:orientation="vertical">
+
+    <include layout="@layout/include_view_titlebar" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dimen_20"
+        android:paddingBottom="@dimen/dimen_12"
+        android:paddingTop="@dimen/dimen_13"
+        android:text="@string/reson_report"
+        android:textColor="@color/color_ee2e3b80" />
+
+    <RelativeLayout
+        android:id="@+id/viewInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/dimen_2"
+        android:background="@drawable/ll_bg_white_gray5">
+
+        <TextView
+            style="@style/reportText"
+            android:text="@string/falseinfo"/>
+        <View
+            android:id="@+id/dotInfo"
+            style="@style/reportView" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/viewContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/dimen_2"
+        android:background="@drawable/ll_bg_white_gray5">
+
+        <TextView
+            style="@style/reportText"
+            android:text="@string/falseContent" />
+
+        <View
+            android:id="@+id/dotContent"
+            style="@style/reportView" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/viewTel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/dimen_2"
+        android:background="@drawable/ll_bg_white_gray5">
+
+        <TextView
+            style="@style/reportText"
+            android:text="@string/falseTel" />
+
+        <View
+            android:id="@+id/dotTel"
+            style="@style/reportView" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/viewForce"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/dimen_2"
+        android:background="@drawable/ll_bg_white_gray5">
+
+        <TextView
+            style="@style/reportText"
+            android:text="@string/henFouce" />
+
+        <View
+            android:id="@+id/dotForce"
+            style="@style/reportView" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/viewOther"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/dimen_2"
+        android:background="@drawable/ll_bg_white_gray5">
+
+        <TextView
+            style="@style/reportText"
+            android:text="@string/ohters" />
+
+        <View
+            android:id="@+id/dotOther"
+            style="@style/reportView" />
+    </RelativeLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
+
+        <TextView
+            android:id="@+id/tvSummbit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:background="@color/red"
+            android:gravity="center"
+            android:padding="@dimen/dimen_16"
+            android:text="@string/summbit"
+            android:textColor="@color/white"
+            android:textSize="@dimen/dimen_16" />
+    </FrameLayout>
+
+</LinearLayout>
