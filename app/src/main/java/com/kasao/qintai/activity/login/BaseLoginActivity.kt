@@ -40,7 +40,7 @@ abstract class BaseLoginActivity : BaseActivity() {
                 if (isVisible) {
                     scrollview?.scrollTo(0, viewTop!!.top)
                 } else {
-                    scrollview?.scrollTo(0, 0)
+                     scrollview?.scrollTo(0, 0)
                 }
             }
         })

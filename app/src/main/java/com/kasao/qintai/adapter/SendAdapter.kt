@@ -26,6 +26,7 @@ class SendAdapter(context: Activity, lists: MutableList<String>) : BaseKSadapter
     var mList: MutableList<String>? = null
     init {
         isOnlyLoadingOne=false
+        isEmptyState=false
         mContext = context
         mList = lists
     }

@@ -103,8 +103,7 @@ class SocialFragment : BaseFragment() {
             }
 
             override fun rePort(snsentity: SNSEntity, positon: Int) {
-                val isSelf = snsentity.u_id.equals(BaseKasaoApplication.getUserId())
-
+                val isSelf = snsentity.u_id.equals(BaseKasaoApplication.getUser().user_id)
                 id = snsentity.id
                 if (isSelf) {
                     index = positon
@@ -114,7 +113,7 @@ class SocialFragment : BaseFragment() {
                 window?.show(isSelf)
             }
         })
-        viewRight?.setOnClickListener { startActivityForResult(Intent(activity, PublishSoicalActivity::class.java), 1) }
+        viewRight?.setOnClickListener { startActivityForResult(Intent(activity, PublishSoicalActivity::class.java), REQUEST_CODE_DETAIL) }
 
         swipeRefresh?.setColorSchemeResources(android.R.color.holo_red_light,
                 android.R.color.holo_green_light,
@@ -128,13 +127,10 @@ class SocialFragment : BaseFragment() {
                 onloadData()
             }, 150)
         }
-
         window = ReportPopuWindow(activity, rootView?.findViewById(R.id.mianroot))
         window?.showPopuWindow(object : ReportPopuWindow.OnReport {
             override fun takeCare() {
-
             }
-
             override fun onReport() {
                 val bundle = Bundle()
                 bundle.putString("sid", id)
@@ -151,7 +147,7 @@ class SocialFragment : BaseFragment() {
         val param = HashMap<String, String>()
         param["attr"] = currentType
         param["page_num"] = currtypage.toString()
-        param["u_id"] = BaseKasaoApplication.getUserId()
+        param["u_id"] = BaseKasaoApplication.getUser().user_id
         ApiManager.getInstance.loadDataByParmars(ApiInterface.CAR__FRIENDSQUAN, param, object : HttpRespnse {
             override fun _onComplete() {
             }
@@ -182,7 +178,7 @@ class SocialFragment : BaseFragment() {
     // 点赞接口
     fun onThumble(snsentity: SNSEntity, index: Int) {
         val paramzan = HashMap<String, String>()
-        paramzan["u_id"] = BaseKasaoApplication.getUserId()
+        paramzan["u_id"] = BaseKasaoApplication.getUser().user_id
         paramzan["af_id"] = snsentity.id
         paramzan["applies"] = "android"
 
@@ -219,7 +215,6 @@ class SocialFragment : BaseFragment() {
                 if (null != domain && domain?.code.equals("200")) {
                     mAdapter?.notifyRemove(index)
                 }
-
             }
 
             override fun _onError(e: Throwable) {
@@ -230,7 +225,7 @@ class SocialFragment : BaseFragment() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == 1) {
+        if (requestCode == REQUEST_CODE_DETAIL) {
             mHandler.postDelayed(Runnable {
                 currtypage = 1
                 isFresh = true

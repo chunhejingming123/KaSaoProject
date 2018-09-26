@@ -1,6 +1,7 @@
 package com.kasao.qintai.base
 
 import android.view.ViewGroup
+import com.kasao.qintai.widget.EmptyView
 import com.kasao.qintai.widget.LodingStateView
 import com.kasao.qintaiframework.base.HeaderFooterRecyclerViewAdapter
 
@@ -10,11 +11,20 @@ import com.kasao.qintaiframework.base.HeaderFooterRecyclerViewAdapter
  */
 
 open class BaseKSadapter<T> : HeaderFooterRecyclerViewAdapter<BaseViewHolder<T>>() {
+    /**
+     * 底部加载状态
+     */
     var isOnlyLoadingOne: Boolean = true
     val LOADING_STATE = 101
     val NODATA_STATE = 102
+    /**
+     * 顶部为null时 空状态
+     */
+    var isEmptyState = true
+
+
     override fun getHeaderItemCount(): Int {
-        return 0
+        return if (isEmptyState) 1 else 0
     }
 
     override fun getFooterItemCount(): Int {
@@ -34,7 +44,7 @@ open class BaseKSadapter<T> : HeaderFooterRecyclerViewAdapter<BaseViewHolder<T>>
     }
 
     override fun onCreateHeaderItemViewHolder(parent: ViewGroup?, headerViewType: Int): BaseViewHolder<T>? {
-        return null
+        return BaseViewHolder(EmptyView(parent!!.context))
     }
 
     override fun onCreateFooterItemViewHolder(parent: ViewGroup?, footerViewType: Int): BaseViewHolder<T>? {
@@ -60,6 +70,9 @@ open class BaseKSadapter<T> : HeaderFooterRecyclerViewAdapter<BaseViewHolder<T>>
     override fun onBindContentItemViewHolder(contentViewHolder: BaseViewHolder<T>?, position: Int) {
 
     }
-
+ public fun setNullData(){
+     isOnlyLoadingOne=false
+     notifyDataSetChanged()
+ }
 
 }

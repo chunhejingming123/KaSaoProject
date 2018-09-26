@@ -30,6 +30,11 @@ public class CarViewpageGridAdapter extends BaseKSadapter<CarBrand> {
     private int itemWidth;
     private Context mContext;
 
+    @Override
+    protected int getHeaderItemCount() {
+        return (listBrand == null || listBrand.size() == 0) ? 1 : 0;
+    }
+
     public CarViewpageGridAdapter(int demen) {
         itemWidth = (ScreenUtil.getScreenW() - ContextComp.getDimensionPixelOffset(demen)) / 4;
     }
@@ -39,7 +44,7 @@ public class CarViewpageGridAdapter extends BaseKSadapter<CarBrand> {
     }
 
     public CarViewpageGridAdapter(Context content) {
-       setOnlyLoadingOne(false);
+        setOnlyLoadingOne(false);
         mContext = content;
         itemWidth = ScreenUtil.getScreenW() / 4;
     }

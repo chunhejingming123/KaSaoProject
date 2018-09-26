@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/dimen_15"
+        android:text="紧急通知"
+        android:textColor="@color/color_333333"
+        android:textSize="@dimen/dimen_16" />
+    <TextView
+        android:layout_marginTop="@dimen/dimen_10"
+        android:id="@+id/tvNick"
+        android:layout_width="wrap_content"
+        android:layout_marginLeft="@dimen/dimen_15"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/dimen_15"
+        android:textColor="@color/color_333333"
+        android:text="尊敬的用户您好："/>
+
+    <TextView
+        android:id="@+id/tvMsg"
+        android:layout_marginTop="@dimen/dimen_5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dimen_15"
+        android:maxLines="4"
+        android:ellipsize="end"
+        android:lineSpacingExtra="@dimen/dimen_2"
+        android:layout_marginRight="@dimen/dimen_15"
+        android:textSize="@dimen/dimen_14"
+        tools:text="ssssssscss"
+        android:textColor="@color/color_434141" />
+    <TextView
+        android:layout_marginTop="@dimen/dimen_5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="被举报"
+        android:layout_marginLeft="@dimen/dimen_15"
+        android:textSize="@dimen/dimen_15"
+        android:textColor="@color/color_333333"/>
+    <TextView
+        android:layout_marginTop="@dimen/dimen_8"
+        android:id="@+id/tvReson"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="sss"
+        android:layout_marginLeft="@dimen/dimen_15"
+        android:textSize="@dimen/dimen_15"
+        android:textColor="@color/color_333333"/>
+    <TextView
+        android:id="@+id/tvRemark"
+        android:layout_marginTop="@dimen/dimen_8"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="@dimen/dimen_15"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/dimen_14"
+        android:textColor="@color/color_ee2e3b"
+        android:textStyle="bold"/>
+    <TextView
+        android:id="@+id/btnCannel"
+        android:layout_marginBottom="@dimen/dimen_15"
+        android:layout_marginTop="@dimen/dimen_10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingRight="@dimen/dimen_15"
+        android:paddingLeft="@dimen/dimen_15"
+        android:paddingTop="@dimen/dimen_8"
+        android:paddingBottom="@dimen/dimen_8"
+        android:layout_gravity="center_horizontal"
+        android:text="知道啦"
+        android:textColor="@color/color_ee2e3b80"
+        android:textSize="@dimen/dimen_16" />
+</LinearLayout>

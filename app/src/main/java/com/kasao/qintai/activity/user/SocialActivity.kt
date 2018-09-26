@@ -54,12 +54,11 @@ class SocialActivity : BaseActivity() {
                 }
             }
         })
-        adapter = SocialAdapter();
+        adapter = SocialAdapter()
         recyclerView?.adapter = adapter
         adapter?.setScoicalAction(object : SocialAdapter.ISocialAction {
             override fun toDetail(entity: SNSEntity, position: Int) {
                 index = position
-
                 val intent = Intent(this@SocialActivity, SocialDetailsActivity::class.java)
                 intent.putExtra("id", entity.id)
                 intent.putExtra("data", entity)
@@ -85,8 +84,10 @@ class SocialActivity : BaseActivity() {
                         currtypage++
                         adapter?.setCommentList(newslist)
                     } else {
-
+                        adapter?.setNullData()
                     }
+                } else {
+                    adapter?.setNullData()
                 }
             }
 
@@ -98,8 +99,8 @@ class SocialActivity : BaseActivity() {
     private fun getMap(): Map<String, String> {
         val param = TreeMap<String, String>()
         param["attr"] = currentType
-        param["u_id"] = BaseKasaoApplication.getUserId()
-        param["user_id"] = BaseKasaoApplication.getUserId()
+        param["u_id"] = BaseKasaoApplication.getUser().user_id
+        param["user_id"] = BaseKasaoApplication.getUser().user_id
         param["page_num"] = currtypage.toString()
         return param
 

@@ -23,6 +23,10 @@ import java.util.ArrayList
 class HistoryBrowseAdapter : BaseKSadapter<BrowseEntity>() {
 
     private var alllistbrowse: MutableList<BrowseEntity>? = null
+    override fun getHeaderItemCount(): Int {
+        isEmptyState = (null == alllistbrowse || alllistbrowse!!.isEmpty())
+        return super.getHeaderItemCount()
+    }
 
     override fun getContentItemCount(): Int {
         if (null == alllistbrowse || alllistbrowse!!.isEmpty()) {
@@ -66,8 +70,8 @@ class HistoryBrowseAdapter : BaseKSadapter<BrowseEntity>() {
 
     // 设置数据
     fun setDatabrowse(lists: List<BrowseEntity>?) {
+        isOnlyLoadingOne = false
         if (null != lists) {
-            isOnlyLoadingOne=false
             if (null == alllistbrowse) {
                 alllistbrowse = ArrayList()
             }
@@ -75,6 +79,9 @@ class HistoryBrowseAdapter : BaseKSadapter<BrowseEntity>() {
             val len = lists.size
             alllistbrowse!!.addAll(lists)
             notifyItemRangeChanged(start, len)
+        }
+        if (null == alllistbrowse || alllistbrowse!!.isEmpty()) {
+            setNullData()
         }
     }
 

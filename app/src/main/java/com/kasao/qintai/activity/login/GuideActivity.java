@@ -71,7 +71,7 @@ public class GuideActivity extends BaseActivity implements View.OnClickListener,
         switch (view.getId()) {
             case R.id.ll_bottom:
                 SharedPreferencesHelper.getInstance(this).put(ParmarsValue.KEY_GUIDE, true);
-                Intent intent = new Intent(this, LoginActivity.class);
+                Intent intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
                 finish();
                 break;

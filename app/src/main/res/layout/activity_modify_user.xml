@@ -12,6 +12,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_10"
         android:background="@color/white"
         android:gravity="center_vertical">
 
@@ -174,6 +175,26 @@
             tools:text="123456789" />
 
     </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.0">
+
+        <TextView
+            android:id="@+id/exit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="@dimen/dimen_2"
+            android:background="@drawable/ll_bg_white_gray5"
+            android:gravity="center"
+            android:padding="@dimen/dimen_18"
+            android:text="@string/exit"
+            android:textColor="@color/color_333333"
+            android:textSize="@dimen/dimen_16"
+            android:textStyle="bold" />
+    </FrameLayout>
 
 
 </LinearLayout>

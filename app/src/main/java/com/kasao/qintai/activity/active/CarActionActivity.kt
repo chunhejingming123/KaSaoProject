@@ -272,7 +272,7 @@ class CarActionActivity : BaseActivity(), View.OnClickListener {
         var strmap = HashMap<String, String>()
         strmap["nickname"] = "suochuminf"
         strmap["user_sex"] = "男"
-        strmap["user_id"] = BaseKasaoApplication.getUserId()
+        strmap["user_id"] = BaseKasaoApplication.getUser().user_id
         if (null == btp) {
             return
         }

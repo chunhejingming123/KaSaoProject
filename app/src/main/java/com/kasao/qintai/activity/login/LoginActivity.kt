@@ -1,17 +1,17 @@
 package com.kasao.qintai.activity.login
 
-import android.animation.ObjectAnimator
 import android.content.Intent
+import android.text.method.PasswordTransformationMethod
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
-import com.kasao.qintai.MainActivity
 import com.kasao.qintai.R
 import com.kasao.qintai.api.ApiInterface
 import com.kasao.qintai.api.ApiManager
 import com.kasao.qintai.base.BaseKasaoApplication
 import com.kasao.qintai.model.domain.UserDomain
+import com.kasao.qintai.util.SharedPreferencesHelper
 import com.kasao.qintaiframework.http.HttpRespnse
 import com.kasao.qintaiframework.until.GsonUtil
 import com.kasao.qintaiframework.until.ScreenUtil
@@ -24,7 +24,6 @@ class LoginActivity : BaseLoginActivity() {
     var etpwd: EditText? = null
     var tvForget: TextView? = null
     var tvRegister: TextView? = null
-
     var tvChose: TextView? = null
     var btnLogin: Button? = null
     var viewQuick: View? = null
@@ -43,14 +42,13 @@ class LoginActivity : BaseLoginActivity() {
         etpwd = findViewById(R.id.etPwd)
         tvForget = findViewById(R.id.tvForget)
         tvRegister = findViewById(R.id.tvRegister)
-
+        etpwd?.transformationMethod = PasswordTransformationMethod.getInstance()
         tvChose = findViewById(R.id.tvChang)
         btnLogin = findViewById(R.id.btnLogin)
         viewAcount = findViewById(R.id.viewCount)
         viewQuick = findViewById(R.id.viewQuick)
         ScreenUtil.initScreen(this)
-        ObjectAnimator.ofFloat(viewAcount, "translationX", 0f, -ScreenUtil.getScreenW().toFloat()).setDuration(200).start()
-
+      //  ObjectAnimator.ofFloat(viewAcount, "translationX", 0f, -ScreenUtil.getScreenW().toFloat()).setDuration(200).start()
         layoutChange()
         rendView()
     }
@@ -67,24 +65,30 @@ class LoginActivity : BaseLoginActivity() {
         btnCode?.setOnClickListener {
             getValidateCod("quicklogin")
         }
-        tvChose?.setOnClickListener {
-            if (quickLogin) {
-                tvChose?.text = getString(R.string.tiplogincount)
-                ObjectAnimator.ofFloat(viewQuick, "translationX", 0f, -ScreenUtil.getScreenW().toFloat()).setDuration(200).start()
-                ObjectAnimator.ofFloat(viewAcount, "translationX", ScreenUtil.getScreenW().toFloat(), 0f).setDuration(200).start()
-            } else {
-                ObjectAnimator.ofFloat(viewQuick, "translationX", ScreenUtil.getScreenW().toFloat(), 0f).setDuration(200).start()
-                ObjectAnimator.ofFloat(viewAcount, "translationX", 0f, -ScreenUtil.getScreenW().toFloat()).setDuration(200).start()
-                tvChose?.text = getString(R.string.tiplogin)
-            }
-            quickLogin = !quickLogin
-        }
+//        tvChose?.setOnClickListener {
+//            if (quickLogin) {
+//                tvChose?.text = getString(R.string.tiplogincount)
+//                ObjectAnimator.ofFloat(viewQuick, "translationX", 0f, -ScreenUtil.getScreenW().toFloat()).setDuration(200).start()
+//                ObjectAnimator.ofFloat(viewAcount, "translationX", ScreenUtil.getScreenW().toFloat(), 0f).setDuration(200).start()
+//            } else {
+//                tvChose?.text = getString(R.string.tiplogin)
+//                ObjectAnimator.ofFloat(viewQuick, "translationX", ScreenUtil.getScreenW().toFloat(), 0f).setDuration(200).start()
+//                ObjectAnimator.ofFloat(viewAcount, "translationX", 0f, -ScreenUtil.getScreenW().toFloat()).setDuration(200).start()
+//
+//            }
+//            quickLogin = !quickLogin
+//        }
         btnLogin?.setOnClickListener {
             var url: String
             var map: HashMap<String, String>? = null
             if (quickLogin) {
                 url = ApiInterface.VERIFICATLOGIN
-                map = HashMap<String, String>()
+                map = HashMap()
+                telnum = etTel?.text.toString()
+                if (telnum.isNullOrEmpty() || telnum.length != 11) {
+                    ToastUtil.showAlter(getString(R.string.input_moble))
+                    return@setOnClickListener
+                }
                 map.put("phone", telnum)
                 map["type"] = "quicklogin"
                 var code = etvalidataCode?.text.toString()
@@ -95,7 +99,7 @@ class LoginActivity : BaseLoginActivity() {
                 map["code"] = code
             } else {
                 url = ApiInterface.LOGIN
-                map = HashMap<String, String>()
+                map = HashMap()
                 telnum = ettel1?.text.toString()
                 if (telnum.isNullOrEmpty() || telnum.length != 11) {
                     ToastUtil.showAlter(getString(R.string.input_moble))
@@ -120,21 +124,22 @@ class LoginActivity : BaseLoginActivity() {
         }
         ApiManager.getInstance.loadDataByParmars(url, map, object : HttpRespnse {
             override fun _onComplete() {
-                finish()
+
             }
 
             override fun _onNext(t: ResponseBody) {
                 var domain = GsonUtil.GsonToBean(t.string(), UserDomain::class.java)
                 if (null != domain && null != domain.data) {
                     BaseKasaoApplication.setUser(domain.data)
-                    startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+                    SharedPreferencesHelper.getInstance(applicationContext).putObject(domain.data)
+                  //  startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+                    finish()
                 }
                 ToastUtil.showAlter(domain?.msg)
 
             }
 
             override fun _onError(e: Throwable) {
-
             }
         })
     }

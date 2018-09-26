@@ -79,8 +79,8 @@ public class CarSearcherActivity extends BaseActivity implements View.OnClickLis
         order = ContextComp.getStringArray(R.array.array_order);
         mEditext = findViewById(R.id.et_editex);
         findViewById(R.id.iv_change_item).setBackgroundResource(R.drawable.icon_category_a);
-        recycleView = (RecyclerView) findViewById(R.id.recycleView);
-        mDropDownMenu = (DropDownMenu) findViewById(R.id.dropDownMenu);
+        recycleView =findViewById(R.id.recycleView);
+        mDropDownMenu = findViewById(R.id.dropDownMenu);
         initRecycle(recycleView, new RecyclerView.OnScrollListener() {
 
             @Override
@@ -103,6 +103,11 @@ public class CarSearcherActivity extends BaseActivity implements View.OnClickLis
                 Intent intent = new Intent(CarSearcherActivity.this, CarSeriesActivity.class);
                 intent.putExtra(ParmarsValue.KEY_GOODID, entity.goods_id);
                 startActivity(intent);
+            }
+
+            @Override
+            public void onCarDel(@NotNull CarDetailEntity entity, int index) {
+
             }
         });
         //init order menu

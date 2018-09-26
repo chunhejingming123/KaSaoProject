@@ -96,9 +96,10 @@ class HistoryLookFragment : BaseFragment() {
                         isLoading = false
                         mBrowseAdapter?.setDatabrowse(lists)
                     } else {
-                        isLoading = true
+                        mBrowseAdapter?.setNullData()
                     }
-
+                } else {
+                    mBrowseAdapter?.setNullData()
                 }
             }
 

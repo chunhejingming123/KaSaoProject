@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="@dimen/fixed_height"
     android:background="?selectableItemBackgroundBorderless"
-    android:paddingBottom="@dimen/fixed_height_bottom_padding"
+    android:paddingBottom="@dimen/dimen_8"
     android:paddingLeft="@dimen/fixed_width_padding"
     android:paddingRight="@dimen/fixed_width_padding"
     android:paddingTop="@dimen/fixed_height_top_padding_inactive">
@@ -22,6 +22,7 @@
             android:layout_gravity="center"
             android:contentDescription="@string/icon"
             android:gravity="center"
+            android:background="@drawable/icon_frame_share"
             android:scaleType="fitXY" />
 
         <com.kasao.qintaiframework.bottomnavigation.BadgeTextView
@@ -38,9 +39,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal|bottom"
-        android:gravity="center"
+        android:gravity="center_horizontal|bottom"
         android:includeFontPadding="false"
         android:lines="1"
-        android:paddingTop="@dimen/dimen_5"
+        android:textColor="@color/color_ee2e3b"
+        android:text="ssssssssss"
         android:textSize="@dimen/fixed_label_active" />
 </FrameLayout>

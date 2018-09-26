@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.kasao.qintai.R;
+import com.kasao.qintai.activity.login.LoginActivity;
 import com.kasao.qintai.activity.shop.ShopListActivity;
 import com.kasao.qintai.adapter.CarSeriesAdapter;
 import com.kasao.qintai.api.ApiInterface;
@@ -24,6 +25,7 @@ import com.kasao.qintai.model.CarSeriesDetail;
 import com.kasao.qintai.model.RtnSuss;
 import com.kasao.qintai.model.domain.Bannderdomain;
 import com.kasao.qintai.model.domain.CarSeriesedomain;
+import com.kasao.qintai.model.domain.User;
 import com.kasao.qintai.model.domain.UserCountdomain;
 import com.kasao.qintai.util.ContextComp;
 import com.kasao.qintai.util.ParmarsValue;
@@ -33,6 +35,7 @@ import com.kasao.qintaiframework.base.BaseActivity;
 import com.kasao.qintaiframework.base.MyApplication;
 import com.kasao.qintaiframework.http.HttpRespnse;
 import com.kasao.qintaiframework.until.GsonUtil;
+import com.kasao.qintaiframework.until.LogUtil;
 import com.kasao.qintaiframework.until.ToastUtil;
 
 import org.jetbrains.annotations.NotNull;
@@ -112,6 +115,11 @@ public class CarSeriesActivity extends BaseActivity implements View.OnClickListe
         adapterFind.setmIonclick(new CarSeriesAdapter.IOnClik() {
             @Override
             public void goToDetail(String goodsId) {
+                User mUser = BaseKasaoApplication.getUser();
+                if (null == mUser) {
+                    startActivity(LoginActivity.class, null);
+                    return;
+                }
                 Bundle bundle = new Bundle();
                 bundle.putString(ParmarsValue.KEY_GOODID, goodsId);
                 startActivity(CarDetailActivity.class, bundle);
@@ -120,6 +128,11 @@ public class CarSeriesActivity extends BaseActivity implements View.OnClickListe
 
             @Override
             public void goToConsult(CarDetailEntity carDetailEntity) {
+                User mUser = BaseKasaoApplication.getUser();
+                if (null == mUser) {
+                    startActivity(LoginActivity.class, null);
+                    return;
+                }
                 if (ask != null && ask.showing()) {
                     ask.hide();
                 } else {
@@ -178,7 +191,7 @@ public class CarSeriesActivity extends BaseActivity implements View.OnClickListe
                             public void sendPrice(String tel) {
                                 Map<String, String> map = new HashMap<String, String>();
                                 map.put(ParmarsValue.KEY_GOODID, car.goods_id);
-                                map.put(ParmarsValue.KEY_UID, BaseKasaoApplication.getUserId());
+                                map.put(ParmarsValue.KEY_UID, BaseKasaoApplication.getUser().user_id);
                                 map.put(ParmarsValue.KEY_PHONE, tel);
                                 ApiManager.Companion.getGetInstance().loadDataByParmars(ApiInterface.Companion.getLeavePhone(), map, new HttpRespnse() {
                                     @Override
@@ -266,8 +279,12 @@ public class CarSeriesActivity extends BaseActivity implements View.OnClickListe
         List<BannerEntity> listbanner = new ArrayList<>();
         for (CarImage car : img_list) {
             BannerEntity entity = new BannerEntity();
-            entity.img = car.url;
-            listbanner.add(entity);
+            if (!TextUtils.isEmpty(car.url)) {
+                LogUtil.e("Tag", "-------url=" + car.url);
+                entity.img = car.url;
+                listbanner.add(entity);
+            }
+
         }
         domain.data = listbanner;
         return domain;

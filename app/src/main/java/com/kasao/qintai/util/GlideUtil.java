@@ -89,7 +89,22 @@ public class GlideUtil {
                 .priority(Priority.NORMAL) //下载的优先级
                 .into(view);
     }
+    /**
+     * glide 通过指定的大小从字符串中加载图片（网络地址或者本地地址）
+     */
+    public static void intoFitCenter(Context context, String url, ImageView view, int width, int height, int defaultId) {
+        DrawableTypeRequest<String> request = Glide.with(context).load(url);
 
+        if (width > 0 && height > 0) {
+            request.override(width, height);
+        }
+
+        request.placeholder(defaultId)
+                .dontAnimate()//去掉glide 自带的效果，防止加载自定义控件时只显示替换图
+                .fitCenter() // 缩放图片让图片充满整个ImageView的边框，然后裁掉超出的部分
+                .priority(Priority.NORMAL) //下载的优先级
+                .into(view);
+    }
     /**
      * glide 通过指定的大小从字符串中加载图片（网络地址或者本地地址）
      */
@@ -148,11 +163,9 @@ public class GlideUtil {
      */
     public static void into(Context context, Uri uri, ImageView view, int width, int height, int defaultId) {
         DrawableTypeRequest<Uri> request = Glide.with(context).load(uri);
-
         if (width > 0 && height > 0) {
             request.override(width, height);
         }
-
         request.placeholder(defaultId)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .dontAnimate()//去掉glide 自带的效果，防止加载自定义控件时只显示替换图
@@ -174,14 +187,13 @@ public class GlideUtil {
 //                .priority(Priority.NORMAL) //下载的优先级
 //                .into(view);
 //    }
-
     /**
      * glide 从字符串中加载图片（网络地址或者本地地址）,
      */
     public static void into(Context context, String url, ImageView view, int defaultId) {
         Glide.with(context).load(url)
                 .placeholder(defaultId)
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                 .dontAnimate()//去掉glide 自带的效果，防止加载自定义控件时只显示替换图
                 .fitCenter() // 缩放图片让图片充满整个ImageView的边框，然后裁掉超出的部分
                 .priority(Priority.NORMAL) //下载的优先级

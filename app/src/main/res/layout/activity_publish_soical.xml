@@ -34,7 +34,7 @@
             android:layout_marginTop="10dp"
             android:background="@color/white"
             android:gravity="top|left"
-            android:hint="说点什么吧 (下方可设置发布次数)"
+            android:hint="说点什么吧少于800(下方可设置发布次数)"
             android:lines="7"
             android:paddingBottom="@dimen/dimen_10"
             android:paddingLeft="@dimen/dimen_15"

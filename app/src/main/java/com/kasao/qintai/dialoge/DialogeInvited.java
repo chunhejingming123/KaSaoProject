@@ -3,17 +3,13 @@ package com.kasao.qintai.dialoge;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.DialogInterface;
-import android.text.Html;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.EditText;
-import android.widget.TextView;
 
 import com.kasao.qintai.R;
-import com.kasao.qintai.util.DataTypeChange;
 import com.kasao.qintaiframework.until.ScreenUtil;
 
 import java.lang.ref.SoftReference;
@@ -27,9 +23,6 @@ import java.lang.ref.SoftReference;
 public class DialogeInvited implements View.OnClickListener {
     private Dialog mDialoge;
     private SoftReference<Activity> soft = null;
-    private TextView tvCurrentprice;
-    private EditText mEditext;
-    private TextView tvCurrentUser;
 
     public DialogeInvited(Activity mActivity) {
         soft = new SoftReference<Activity>(mActivity);

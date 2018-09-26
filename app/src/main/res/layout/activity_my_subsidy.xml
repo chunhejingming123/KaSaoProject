@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_f9f9f9"
+    android:orientation="vertical"
+    tools:context=".activity.user.MySubsidyActivity">
+
+    <include layout="@layout/include_view_titlebar" />
+
+    <TextView
+        android:id="@+id/tvDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/dimen_20"
+        android:textColor="@color/color_333333"
+        android:textSize="@dimen/dimen_14"
+        android:textStyle="bold"
+        tools:text="@string/query" />
+
+    <ImageView
+        android:id="@+id/iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/dimen_12"
+        android:scaleType="fitCenter"
+        android:src="@drawable/icon_search_nomore" />
+    <TextView
+        android:id="@+id/tvEmpty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_10"
+        android:layout_marginLeft="@dimen/dimen_45"
+        android:layout_marginRight="@dimen/dimen_45"
+        android:text="@string/tipempty"
+        android:layout_gravity="center_horizontal"
+        android:textColor="@color/color_33333320" />
+
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/tvTip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dimen_45"
+        android:layout_marginRight="@dimen/dimen_45"
+        android:layout_marginTop="@dimen/dimen_15"
+        android:lineSpacingExtra="@dimen/dimen_3"
+        android:text="@string/tips5"
+        android:textColor="@color/color_333333" />
+
+</LinearLayout>

@@ -27,7 +27,7 @@
                 android:layout_height="@dimen/dimen_97"
                 android:layout_marginTop="@dimen/dimen_2"
                 android:scaleType="fitXY"
-                tools:background="@drawable/car_big_banner" />
+                tools:background="@drawable/bg_default" />
 
         </FrameLayout>
 

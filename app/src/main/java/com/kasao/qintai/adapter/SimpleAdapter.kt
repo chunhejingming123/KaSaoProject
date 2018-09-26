@@ -26,6 +26,10 @@ class SimpleAdapter : BaseKSadapter<CarParmeterKeyValue>() {
     val ITEM_TYPE_CONTENT = 101
     var type = 99
     var selectedIndex = 0
+    override fun getHeaderItemCount(): Int {
+        isEmptyState=(mlist==null||mlist?.size==0)
+        return super.getHeaderItemCount()
+    }
     override fun getContentItemCount(): Int {
         return if (mlist == null) 0 else mlist!!.size
     }

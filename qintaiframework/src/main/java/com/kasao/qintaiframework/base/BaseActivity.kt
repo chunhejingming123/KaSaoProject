@@ -27,7 +27,9 @@ abstract class BaseActivity : FragmentActivity(), ImplementUi {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         init()
-        setContentView(onLayoutLoad())
+        if(0!=onLayoutLoad()){
+            setContentView(onLayoutLoad())
+        }
         findView()
         ActivityManager.registerActivity(this)
         onloadData()

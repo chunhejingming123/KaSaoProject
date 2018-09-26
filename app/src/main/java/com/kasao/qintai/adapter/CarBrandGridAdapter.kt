@@ -22,9 +22,14 @@ import com.kasao.qintaiframework.until.ScreenUtil
 
 class CarBrandGridAdapter : BaseKSadapter<CarBrand>() {
     init {
-        isOnlyLoadingOne=false
+        isOnlyLoadingOne = false
     }
+
     var listBrand: MutableList<CarBrand>? = null
+    override fun getHeaderItemCount(): Int {
+        isEmptyState = listBrand == null || listBrand?.size == 0
+        return super.getHeaderItemCount()
+    }
 
     fun setListBrands(listBrand: MutableList<CarBrand>) {
         this.listBrand = listBrand
@@ -59,8 +64,8 @@ class CarBrandGridAdapter : BaseKSadapter<CarBrand>() {
             val item = itemView.layoutParams as RecyclerView.LayoutParams
             item.width = ScreenUtil.getScreenW() / 4
             itemView.layoutParams = item
-            ivBrand = itemView.findViewById(R.id.iv_car_brand) as ImageView
-            tvBrandName = itemView.findViewById(R.id.tv_car_name) as TextView
+            ivBrand = itemView.findViewById(R.id.iv_car_brand)
+            tvBrandName = itemView.findViewById(R.id.tv_car_name)
 
             ivBrand.layoutParams
             val params = ivBrand.layoutParams

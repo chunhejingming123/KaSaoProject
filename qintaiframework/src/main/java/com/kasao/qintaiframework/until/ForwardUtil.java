@@ -29,6 +29,7 @@ public class ForwardUtil {
         }
         startUriWithOutFilter(url, context);
     }
+
     /**
      * 没有经过filter过滤打开地址
      *
@@ -42,6 +43,7 @@ public class ForwardUtil {
             startWebInner(url, activity);
         }
     }
+
     /**
      * 跳转到 SchemeUri
      *
@@ -57,14 +59,12 @@ public class ForwardUtil {
             } else {
                 i = new Intent();
             }
-//            if (!(context instanceof Activity)) {
-//                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//            }
+
             i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             i.setData(uri);
             context.startActivity(i);
         } catch (ActivityNotFoundException e2) {
-             LogUtil.e(e2);
+            LogUtil.e(e2);
 //            if (url.startsWith("wtai://wp/mc;")) {
 //                String url2 = url.replace("wtai://wp/mc;", "tel://");
 //                startSchemeUri(url2, context);

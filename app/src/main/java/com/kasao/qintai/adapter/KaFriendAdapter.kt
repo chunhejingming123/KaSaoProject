@@ -18,7 +18,9 @@ import com.kasao.qintai.R
 import com.kasao.qintai.model.domain.Zandomain
 import com.kasao.qintai.util.ContextComp
 import com.kasao.qintai.util.GlideUtil
+import com.kasao.qintai.widget.CircleImageView
 import com.kasao.qintaiframework.base.MyApplication
+import com.kasao.qintaiframework.until.LogUtil
 import java.util.ArrayList
 
 /**
@@ -27,13 +29,11 @@ import java.util.ArrayList
  */
 
 class KaFriendAdapter(content: Context) : BaseKSadapter<SNSEntity>() {
-    private val mContext: Context
-
-    init {
-        mContext = content
-    }
-
+    private val mContext: Context=content
     var mlist: MutableList<SNSEntity>? = null
+    override fun getHeaderItemCount(): Int {
+        return 0
+    }
 
     override fun getContentItemCount(): Int {
         if (null == mlist || mlist!!.isEmpty()) {
@@ -61,7 +61,7 @@ class KaFriendAdapter(content: Context) : BaseKSadapter<SNSEntity>() {
     }
 
     inner class ContenerViewHolder(itemView: View) : BaseViewHolder<SNSEntity>(itemView) {
-        var picture: ImageView
+        var picture: CircleImageView
         var name: TextView
         var content: TextView
         var time: TextView
@@ -99,32 +99,38 @@ class KaFriendAdapter(content: Context) : BaseKSadapter<SNSEntity>() {
             }
             try {
                 val idCardReplaceWithStar = idCardReplaceWithStar(entity.nackname)
-                name.setText(idCardReplaceWithStar)
-                liulangcishu.setText(entity.browse_count + "")
+                if(idCardReplaceWithStar.isNullOrEmpty()){
+                    name.text="匿名"
+                }
+                else{
+                    name.text=(idCardReplaceWithStar)
+                }
+
+                liulangcishu?.text=(entity.browse_count + "")
                 if (TextUtils.isEmpty(entity.title)) {
                     content.visibility = View.GONE
                 } else {
                     content.visibility = View.VISIBLE
-                    content.setText(entity.title)
+                    content?.text=(entity.title)
                 }
-                time.setText(entity.create_time)
-                if (entity.review_count.equals("0")) {
+                time?.text=(entity.create_time)
+                if (entity.review_count=="0") {
                     comment.text = "评论"
                 } else {
-                    comment.setText(entity.review_count)
+                    comment?.text=(entity.review_count)
                 }
                 val drawable: Drawable
-                if (entity.type.equals("2")) {
+                if (entity.type==("2")) {
                     drawable = ContextComp.getDrawable(R.drawable.icon_thumb_normal)
                     praise.setCompoundDrawablesWithIntrinsicBounds(drawable, null, null, null)
                 } else {
                     drawable = ContextComp.getDrawable(R.drawable.icon_thumb_press)
                     praise.setCompoundDrawablesWithIntrinsicBounds(drawable, null, null, null)
                 }
-                if (entity.likes_count.equals("0") || TextUtils.isEmpty(entity.likes_count)) {
+                if (entity.likes_count=="0" || TextUtils.isEmpty(entity.likes_count)) {
                     praise.text = "赞"
                 } else {
-                    praise.setText(entity.likes_count)
+                    praise?.text=entity.likes_count
                 }
                 praise.setOnClickListener {
                     if (null != onFriendAction) {
@@ -176,7 +182,7 @@ class KaFriendAdapter(content: Context) : BaseKSadapter<SNSEntity>() {
                     }
                 }
             } catch (e: Exception) {
-                name.setText(entity.nackname)
+           LogUtil.e("------="+e.message)
             }
 
 
@@ -184,8 +190,7 @@ class KaFriendAdapter(content: Context) : BaseKSadapter<SNSEntity>() {
     }
 
     fun idCardReplaceWithStar(idCard: String?): String? {
-
-        return if (idCard!!.isEmpty() || idCard == null) {
+        return if (idCard == null||idCard!!.isEmpty() ) {
             null
         } else {
             replaceAction(idCard, "(?<=\\d{3})\\d(?=\\d{4})")
@@ -202,7 +207,7 @@ class KaFriendAdapter(content: Context) : BaseKSadapter<SNSEntity>() {
         }
         isOnlyLoadingOne = false
         if (mlist == null) {
-            mlist = ArrayList<SNSEntity>()
+            mlist = ArrayList()
         }
         val start = mlist!!.size
         val len = data.size

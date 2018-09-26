@@ -25,6 +25,10 @@ class SocialAdapter : BaseKSadapter<SNSEntity>() {
     var TEXT_IMG = 1// 有图片item
     var TEXT = 2// 没有图片
     var tag = ""
+    override fun getHeaderItemCount(): Int {
+        isEmptyState = mList==null||mList?.size==0
+        return super.getHeaderItemCount()
+    }
     override fun getContentItemCount(): Int {
         if (null == mList || mList!!.isEmpty()) {
             return 0

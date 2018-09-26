@@ -80,7 +80,11 @@ class HistoryThumbleFragment : BaseFragment() {
                     val lists = thumdomain.data
                     if (null != lists) {
                         mBrowseAdapter?.setDatathumble(lists)
+                    } else {
+                        mBrowseAdapter?.setNullData()
                     }
+                } else {
+                    mBrowseAdapter?.setNullData()
                 }
 
             }

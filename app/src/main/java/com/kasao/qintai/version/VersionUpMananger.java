@@ -53,7 +53,7 @@ public class VersionUpMananger {
             if (isRequers) {
                 setting();
             } else {
-                ToastUtil.showAlter("已最新版本");
+               // ToastUtil.showAlter("已最新版本");
             }
         } else {
             if (ContextCompat.checkSelfPermission(mContent, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
@@ -148,7 +148,7 @@ public class VersionUpMananger {
     public void checkUp(boolean isRequer) {
         isRequers = isRequer;
         Map<String, String> map = new HashMap<String, String>();
-        map.put("app_id", "1");//app_id 1 android  2 ios
+        map.put("app_id", "2");
         ApiManager.Companion.getGetInstance().getDataByParmars(ApiInterface.Companion.getUPVERSION(), map, new HttpRespnse() {
             @Override
             public void _onComplete() {
@@ -166,7 +166,7 @@ public class VersionUpMananger {
                 if (null != domain) {
                     setVersionInfo(domain.data);
                 } else {
-                    ToastUtil.showAlter("已最新版本");
+                    //  ToastUtil.showAlter("已最新版本");
                 }
             }
 

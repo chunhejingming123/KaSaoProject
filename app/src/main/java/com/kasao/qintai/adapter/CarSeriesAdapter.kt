@@ -24,6 +24,11 @@ class CarSeriesAdapter : BaseKSadapter<CarDetailEntity>() {
             notifyDataSetChanged()
         }
 
+    override fun getHeaderItemCount(): Int {
+        isEmptyState=mlist == null || mlist?.size == 0
+        return super.getHeaderItemCount()
+    }
+
     override fun getContentItemCount(): Int {
         if (null == mlist) {
             return 0

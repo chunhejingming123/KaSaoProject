@@ -1,5 +1,7 @@
 package com.kasao.qintai.activity.login
 
+import android.text.InputType
+import android.text.method.PasswordTransformationMethod
 import android.widget.Button
 import android.widget.EditText
 import com.kasao.qintai.R
@@ -25,6 +27,9 @@ class ForgetPwdActivity : BaseLoginActivity() {
         findBaseView()
         etPwd = findViewById(R.id.etPwd)
         etPwd2 = findViewById(R.id.etPwd2)
+        etPwd?.transformationMethod = PasswordTransformationMethod.getInstance()
+        etPwd2?.transformationMethod = PasswordTransformationMethod.getInstance()
+
         etCode = findViewById(R.id.etCode)
         btnConfirm = findViewById(R.id.btnConfirm)
         layoutChange()

@@ -1,5 +1,6 @@
 package com.kasao.qintai.activity.main;
 
+import android.annotation.SuppressLint;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -34,6 +35,7 @@ import com.kasao.qintai.model.CarParmeterKeyValue;
 import com.kasao.qintai.model.RtnSuss;
 import com.kasao.qintai.model.domain.Bannderdomain;
 import com.kasao.qintai.model.domain.CarDetaildomain;
+import com.kasao.qintai.model.domain.User;
 import com.kasao.qintai.model.domain.UserCountdomain;
 import com.kasao.qintai.util.ContextComp;
 import com.kasao.qintai.util.DataTypeChange;
@@ -125,7 +127,8 @@ public class CarDetailActivity extends BaseActivity implements View.OnClickListe
             finish();
             return;
         }
-        uid = BaseKasaoApplication.getUserId();
+
+        uid = BaseKasaoApplication.getUser().user_id;
         scrollview = findViewById(R.id.scrollview);
         ivBack = findViewById(R.id.ivback);
         ivShare = findViewById(R.id.iv_share);
@@ -195,9 +198,9 @@ public class CarDetailActivity extends BaseActivity implements View.OnClickListe
         adapterRecommend = new CarDetailRecommenAdapter(new CarDetailRecommenAdapter.ActionToCarDetail() {
             @Override
             public void toCareDetail(CarDetailEntity entity) {
-//                Bundle bundle = new Bundle();
-//                bundle.putString(ParmarsValue.KEY_GOODID, entity.goods_id);
-//                startActivity(CarDetailActivity.class, bundle);
+                Bundle bundle = new Bundle();
+                bundle.putString(ParmarsValue.KEY_GOODID, entity.goods_id);
+                startActivity(CarDetailActivity.class, bundle);
             }
         });
         recycleViewRecommend.setAdapter(adapterRecommend);
@@ -215,9 +218,9 @@ public class CarDetailActivity extends BaseActivity implements View.OnClickListe
                         ivStore.setBackgroundResource(R.drawable.selctor_store);
                     }
                     ivShare.setBackgroundResource(R.drawable.icon_round_share);
-                    ivBack.setAlpha(1);
-                    ivStore.setAlpha(1);
-                    ivShare.setAlpha(1);
+                    ivBack.setAlpha(1f);
+                    ivStore.setAlpha(1f);
+                    ivShare.setAlpha(1f);
                 } else if (distance > 0 && distance <= titleShowPosition) {
                     float scale = (float) distance / titleShowPosition;
                     //  float alpha = (255 * scale);
@@ -248,11 +251,11 @@ public class CarDetailActivity extends BaseActivity implements View.OnClickListe
                     }
 
                 } else {
-                    viewTab.setAlpha(1);
-                    viewTop.setAlpha(1);
-                    ivBack.setAlpha(1);
-                    ivStore.setAlpha(1);
-                    ivShare.setAlpha(1);
+                    viewTab.setAlpha(1f);
+                    viewTop.setAlpha(1f);
+                    ivBack.setAlpha(1f);
+                    ivStore.setAlpha(1f);
+                    ivShare.setAlpha(1f);
                 }
                 if (distance > ivScrolltoTop.getTop()) {
                     ivScrolltoTop.setVisibility(View.VISIBLE);
@@ -430,6 +433,10 @@ public class CarDetailActivity extends BaseActivity implements View.OnClickListe
     @Override
     protected void onResume() {
         super.onResume();
+        User mUser = BaseKasaoApplication.getUser();
+        if (null == mUser) {
+            return;
+        }
         mHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -525,12 +532,14 @@ public class CarDetailActivity extends BaseActivity implements View.OnClickListe
 
 
     public void share() {
-        String shareImg = "";
-        if (null != carEntity && null != carEntity.img_list && null != carEntity.img_list.get(0)) {
-            shareImg = carEntity.img_list.get(0).url;
+        String shareImg;
+        if (null != carEntity) {
+            if (null != carEntity.img_list && null != carEntity.img_list.get(0)) {
+                shareImg = carEntity.img_list.get(0).url;
+                share = ShareDialog.getInstanceShareDialoge(CarDetailActivity.this, TextUtils.isEmpty(carEntity.name) ? "卡车" : carEntity.name, ApiInterface.Companion.getRequestUrl(ApiInterface.Companion.getShareCarDetailUrl()) + goodId, shareImg, carEntity.goods_jingle);
+                share.show();
+            }
         }
-        share = ShareDialog.getInstanceShareDialoge(CarDetailActivity.this, TextUtils.isEmpty(carEntity.name) ? "卡车" : carEntity.name, ApiInterface.Companion.getRequestUrl(ApiInterface.Companion.getShareCarDetailUrl()) + goodId, shareImg, carEntity.goods_jingle);
-        share.show();
     }
 
 
@@ -551,11 +560,7 @@ public class CarDetailActivity extends BaseActivity implements View.OnClickListe
             public void _onNext(@NotNull ResponseBody t) {
                 try {
                     RtnSuss rtn = GsonUtil.Companion.GsonToBean(t.string(), RtnSuss.class);
-                    if (rtn.code.equals("200")) {
-                        isStore = true;
-                    } else {
-                        isStore = false;
-                    }
+                    isStore = rtn.code.equals("200");
                     if (isStore) {
                         ivStore.setBackgroundResource(R.drawable.selctor_stored);
                     } else {
@@ -604,7 +609,7 @@ public class CarDetailActivity extends BaseActivity implements View.OnClickListe
         ask.setSendPrice(new DialogeAskprice.SendPrice() {
             @Override
             public void sendPrice(String tel) {
-                Map<String, String> map = new HashMap<String, String>();
+                Map<String, String> map = new HashMap<>();
                 map.put(ParmarsValue.KEY_GOODID, goodId);
                 map.put(ParmarsValue.KEY_UID, uid);
                 map.put(ParmarsValue.KEY_PHONE, tel);
@@ -692,6 +697,7 @@ public class CarDetailActivity extends BaseActivity implements View.OnClickListe
         super.onDestroy();
     }
 
+    @SuppressLint("SetJavaScriptEnabled")
     private void initWebView() {
         WebSettings settings = mWebView.getSettings();
         //settings.setUseWideViewPort(true);//调整到适合webview的大小，不过尽量不要用，有些手机有问题
@@ -700,6 +706,7 @@ public class CarDetailActivity extends BaseActivity implements View.OnClickListe
         //设置WebView属性，能够执行Javascript脚本
         mWebView.getSettings().setJavaScriptEnabled(true);//设置js可用
         mWebView.setWebViewClient(new WebViewClient());
+        //noinspection deprecation
         settings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);//支持内容重新布局
         mWebView.loadUrl(ApiInterface.Companion.getRequestUrl(ApiInterface.Companion.getLINK_CAR_DETAI()) + goodId);
         mWebView.setWebViewClient(new WebViewClient() {

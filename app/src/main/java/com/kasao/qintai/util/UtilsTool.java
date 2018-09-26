@@ -247,7 +247,7 @@ public class UtilsTool {
     }
 
     public static boolean isApkInstall(Context mcontext,String appid) {
-        IWXAPI msgApi = createWXAPI(mcontext, null);
+        IWXAPI msgApi = createWXAPI(mcontext, appid);
         msgApi.registerApp(appid);
         boolean isapk = msgApi.isWXAppInstalled();
         if (!isapk) {

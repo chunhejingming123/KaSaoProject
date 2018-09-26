@@ -48,6 +48,8 @@ class ShopListActivity : BaseActivity() {
                     MapNativeUtil.nativegation(this@ShopListActivity, longtitud, latitud)
                 }
             })
+        }else{
+            mAdapter?.setNullData()
         }
     }
 

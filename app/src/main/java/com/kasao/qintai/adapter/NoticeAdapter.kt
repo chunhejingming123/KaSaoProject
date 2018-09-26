@@ -21,7 +21,10 @@ class NoticeAdapter : BaseKSadapter<NoticeEntity>() {
             field = value
             notifyDataSetChanged()
         }
-
+    override fun getHeaderItemCount(): Int {
+        isEmptyState = mutableList==null||mutableList?.size==0
+        return super.getHeaderItemCount()
+    }
     override fun getContentItemCount(): Int {
         if (null == mutableList || mutableList!!.isEmpty())
             return 0

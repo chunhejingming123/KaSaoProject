@@ -25,6 +25,7 @@ import com.kasao.qintai.util.ImageTools
 import com.kasao.qintai.widget.seekBar.BubbleSeekBar
 import com.kasao.qintaiframework.base.BaseActivity
 import com.kasao.qintaiframework.http.HttpRespnse
+import com.kasao.qintaiframework.until.OnTimeClickDuring
 import com.kasao.qintaiframework.until.ToastUtil
 import okhttp3.MediaType
 import okhttp3.RequestBody
@@ -80,10 +81,11 @@ class PublishSoicalActivity : BaseActivity(), View.OnClickListener {
         when (p0?.id) {
             R.id.viewRight -> {
                 CloseKeyBoard()
-                if (mInput?.text?.length == 0 && mList?.size == 0) {
+                var length=mInput?.text?.trim()?.length
+                if (length == 0 && mList?.size == 0) {
                     ToastUtil.showAlter("说点什么吧")
-                } else if (mInput!!.text!!.length > 300) {
-                    ToastUtil.showAlter("最多只能300字")
+                } else if (length!! >800) {
+                    ToastUtil.showAlter("最多只能800字")
                 } else {
                     upLoadingData()
                 }
@@ -219,6 +221,10 @@ class PublishSoicalActivity : BaseActivity(), View.OnClickListener {
 
 
     private fun upLoadingData() {
+        val isable = OnTimeClickDuring.getInstance().onTickTimeChange(System.currentTimeMillis())
+        if (!isable) {
+            return
+        }
         val map = HashMap<String, RequestBody>()
         map["attr"] = toRequestBody(publishType)
         map["u_id"] = toRequestBody(BaseKasaoApplication.getUser().user_id)

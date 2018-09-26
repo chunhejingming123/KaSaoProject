@@ -22,10 +22,6 @@ class HttpUtil private constructor() {
 
     private val mApiService: ApiService = Api.default
 
-    //    fun getRequest(url:String,map:HashMap<String,String>,request:HttpSimpleString):Observable<Any>{
-//
-//        return
-//    }
     fun postRequest(url: String, map: Map<String, String>, mHttpRespnse: HttpRespnse) {
         var observer = mApiService.postGetObservable(url, map)
         observer.subscribeOn(Schedulers.io())

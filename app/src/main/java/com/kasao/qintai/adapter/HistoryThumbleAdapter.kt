@@ -24,6 +24,11 @@ class HistoryThumbleAdapter : BaseKSadapter<ThumbModel>() {
 
     private var thumble: MutableList<ThumbModel>? = null
 
+    override fun getHeaderItemCount(): Int {
+        isEmptyState = (null == thumble || thumble!!.isEmpty())
+        return super.getHeaderItemCount()
+    }
+
     override fun getContentItemCount(): Int {
         if (null == thumble || thumble!!.isEmpty()) {
             return 0
@@ -68,9 +73,8 @@ class HistoryThumbleAdapter : BaseKSadapter<ThumbModel>() {
     }
 
     fun setDatathumble(lists: List<ThumbModel>?) {
-
+        isOnlyLoadingOne = false
         if (null != lists) {
-            isOnlyLoadingOne=false
             if (null == thumble) {
                 thumble = ArrayList<ThumbModel>()
             }
@@ -78,6 +82,9 @@ class HistoryThumbleAdapter : BaseKSadapter<ThumbModel>() {
             val len = lists.size
             thumble!!.addAll(lists)
             notifyItemRangeChanged(start, len)
+        }
+        if (null == thumble || thumble!!.isEmpty()) {
+            setNullData()
         }
     }
 

@@ -14,6 +14,7 @@ import com.kasao.qintai.model.BannerEntity
 import com.kasao.qintai.model.ShopInfo
 import com.kasao.qintai.model.domain.Bannderdomain
 import com.kasao.qintai.model.domain.Shopinfodomain
+import com.kasao.qintai.util.MapNativeUtil
 import com.kasao.qintai.util.ParmarsValue
 import com.kasao.qintai.util.UtilsTool
 import com.kasao.qintai.widget.banner.BannerView
@@ -38,6 +39,7 @@ class ShopActivity : BaseActivity() {
     var bannerView: BannerView? = null
     var storeId: String? = null
     var mShopinfo: ShopInfo? = null
+    var tvGoThere:TextView?=null
 
     override fun onLayoutLoad(): Int {
         return R.layout.activity_shop
@@ -49,11 +51,18 @@ class ShopActivity : BaseActivity() {
         tvDistance = findViewById(R.id.tvDistance)
         tvIntro = findViewById(R.id.tvIntro)
         bannerView = findViewById(R.id.bannerView)
+        tvGoThere=findViewById(R.id.tvGothere)
         val parmars = bannerView?.getLayoutParams() as FrameLayout.LayoutParams
         parmars.width = ScreenUtil.getScreenW() - resources.getDimensionPixelOffset(R.dimen.dimen_80)
         parmars.height = 39 * (ScreenUtil.getScreenW() - resources.getDimensionPixelOffset(R.dimen.dimen_80)) / 57
         bannerView?.setLayoutParams(parmars)
         findViewById<View>(R.id.viewBack).setOnClickListener { finish() }
+        tvGoThere?.setOnClickListener {
+            val longtitud = java.lang.Double.parseDouble(mShopinfo?.store_y)
+            val latitud = java.lang.Double.parseDouble(mShopinfo?.store_x)
+            MapNativeUtil.nativegation(this@ShopActivity, longtitud, latitud)
+        }
+
 
 
     }
@@ -88,7 +97,6 @@ class ShopActivity : BaseActivity() {
             } catch (e: Throwable) {
                 tvDistance?.visibility = View.GONE
             }
-
         }
     }
 

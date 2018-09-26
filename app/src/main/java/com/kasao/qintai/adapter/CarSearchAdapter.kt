@@ -26,7 +26,10 @@ class CarSearchAdapter : BaseKSadapter<CarDetailEntity>() {
     val DISPLAYB = 101
     val DISPLAYDEL = 102
     private var isDisplay = false// a,b 两种样式转换
-    private var isDelete = false
+    var isDelete = false
+        set(value) {
+            field = value
+        }
     private var index = -1
 
     override fun getHeaderItemCount(): Int {
@@ -64,9 +67,9 @@ class CarSearchAdapter : BaseKSadapter<CarDetailEntity>() {
 
     override fun onCreateContentItemViewHolder(parent: ViewGroup?, contentViewType: Int): BaseViewHolder<CarDetailEntity>? {
         when (contentViewType) {
-            DISPLAYA -> return ContentViewHolderA(ItemCarDisplayA(parent!!.context), mCarSellAction!!)
-            DISPLAYB -> return ContentViewHolderB(ItemCarDisplayB(parent!!.context), mCarSellAction!!)
-            DISPLAYDEL -> return ContentViewHolderDel(ItemCarDisplayDel(parent!!.context), mCarSellAction!!)
+            DISPLAYA -> return ContentViewHolderA(ItemCarDisplayA(parent!!.context))
+            DISPLAYB -> return ContentViewHolderB(ItemCarDisplayB(parent!!.context))
+            DISPLAYDEL -> return ContentViewHolderDel(ItemCarDisplayDel(parent!!.context))
         }
         return null
     }
@@ -77,49 +80,65 @@ class CarSearchAdapter : BaseKSadapter<CarDetailEntity>() {
         }
     }
 
-    class ContentViewHolderA(item: View, mCarAction: ICarSellAction) : BaseViewHolder<CarDetailEntity>(item) {
+    inner class ContentViewHolderA(item: View) : BaseViewHolder<CarDetailEntity>(item) {
         var displayA: ItemCarDisplayA
-        var listener: ICarSellAction
 
         init {
             displayA = item as ItemCarDisplayA
-            listener = mCarAction
         }
 
         override fun rendView(t: CarDetailEntity, position: Int) {
             displayA.rendView(t, false, false)
-            displayA.setOnClickListener { listener.onCarDetaile(t) }
+            displayA.setOnClickListener { mCarSellAction?.onCarDetaile(t) }
         }
     }
 
-    class ContentViewHolderDel(item: View, mCarAction: ICarSellAction) : BaseViewHolder<CarDetailEntity>(item) {
+    inner class ContentViewHolderDel(item: View) : BaseViewHolder<CarDetailEntity>(item) {
         var displayDel: ItemCarDisplayDel
-        var listener: ICarSellAction
 
         init {
             displayDel = item as ItemCarDisplayDel
-            listener = mCarAction
         }
 
         override fun rendView(t: CarDetailEntity, position: Int) {
             displayDel.rendView(t, false, false)
+            displayDel.setmIcarDel(object : ItemCarDisplayDel.ICarDel {
+                override fun onDelStoreCar(entity: CarDetailEntity?, index: Int) {
+                    mCarSellAction?.onCarDel(t,index)
+                }
+            })
+            displayDel.setOnClickListener { mCarSellAction?.onCarDetaile(t) }
+            displayDel.setState(position == index)
+            displayDel.setOnLongClickListener(object : View.OnLongClickListener {
+                override fun onLongClick(p0: View?): Boolean {
+                    if (position == index) {
+                        displayDel.setState(false)
+                        index = -1
+                    } else {
+                        index = position
+                    }
+                    notifyDataSetChanged()
+                    return true
+                }
+            })
         }
 
     }
 
-    class ContentViewHolderB(item: View, mCarAction: ICarSellAction) : BaseViewHolder<CarDetailEntity>(item) {
+    inner class ContentViewHolderB(item: View) : BaseViewHolder<CarDetailEntity>(item) {
         var displayB: ItemCarDisplayB
-        var listener: ICarSellAction
 
         init {
             displayB = item as ItemCarDisplayB
-            listener = mCarAction
 
         }
 
         override fun rendView(t: CarDetailEntity, position: Int) {
             displayB.rendView(t)
-            displayB.setOnClickListener { listener.onCarDetaile(t) }
+            displayB.setOnClickListener {
+                index = -1
+                mCarSellAction?.onCarDetaile(t)
+            }
         }
     }
 
@@ -132,9 +151,17 @@ class CarSearchAdapter : BaseKSadapter<CarDetailEntity>() {
         }
     }
 
-
+    // 收藏中移除
+    fun removeItem(index: Int) {
+        var index = index
+        if (null != allData) {
+            allData?.removeAt(index)
+            notifyContentItemRemoved(index)
+            index = -1
+        }
+    }
     fun setDatas(data: MutableList<CarDetailEntity>) {
-        isOnlyLoadingOne=false
+        isOnlyLoadingOne = false
         if (null != data) {
             if (null == allData) {
                 allData = ArrayList()
@@ -191,6 +218,6 @@ class CarSearchAdapter : BaseKSadapter<CarDetailEntity>() {
 
     interface ICarSellAction {
         fun onCarDetaile(entity: CarDetailEntity)
-
+        fun onCarDel(entity: CarDetailEntity,index:Int)
     }
 }

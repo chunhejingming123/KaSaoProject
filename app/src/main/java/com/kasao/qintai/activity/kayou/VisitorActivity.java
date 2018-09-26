@@ -34,7 +34,6 @@ public class VisitorActivity extends BaseActivity implements View.OnClickListene
     private int translationX = 0;
     private String id;
     private int textWidth;
-    private String currenttype = "2";
 
     @Override
     public int onLayoutLoad() {
@@ -72,7 +71,7 @@ public class VisitorActivity extends BaseActivity implements View.OnClickListene
         int browse = getIntent().getIntExtra("history", 0);
 
         View back = findViewById(R.id.viewBack);
-        TextView tvtitle = (TextView) findViewById(R.id.tvTitle);
+        TextView tvtitle =  findViewById(R.id.tvTitle);
         tvtitle.setText(ContextComp.getString(R.string.title_vistor));
         back.setOnClickListener(this);
         tvLook.setOnClickListener(this);

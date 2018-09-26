@@ -2,8 +2,11 @@ package com.kasao.qintai.util;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.text.TextUtils;
 
 import com.kasao.qintaiframework.base.MyApplication;
+import com.kasao.qintaiframework.until.GsonUtil;
+import com.kasao.qintaiframework.until.LogUtil;
 
 import java.util.Map;
 
@@ -76,6 +79,37 @@ public class SharedPreferencesHelper {
             return sharedPreferences.getString(key, null);
         }
     }
+
+    public <T> T getObject(Class<T> clazz) {
+        String key = getKey(clazz);
+        String json = getSharedPreference(key, "").toString();
+        LogUtil.e("----key1=" + key + "----json2=" + json);
+        if (TextUtils.isEmpty(json)) {
+            return null;
+        }
+        try {
+            return GsonUtil.Companion.GsonToBean(json, clazz);
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    public void putObject(Object object) {
+        String key = getKey(object.getClass());
+
+        String json = GsonUtil.Companion.GsonString(object);
+        LogUtil.e("--------key--" + key + "--json=" + json);
+        put(key, json);
+    }
+
+    public void removeObject(Context context, Class<?> clazz) {
+        remove(getKey(clazz));
+    }
+
+    public String getKey(Class<?> clazz) {
+        return clazz.getName();
+    }
+
 
     /**
      * 移除某个key值已经对应的值

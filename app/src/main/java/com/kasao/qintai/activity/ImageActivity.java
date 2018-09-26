@@ -30,8 +30,9 @@ public class ImageActivity extends BaseActivity {
     private int position;
     private TextView page;
     private int count;
-    private int index;
+
     private String[] imageArray, nameArray;
+    private int index;
 
     @Override
     public int onLayoutLoad() {
@@ -85,12 +86,11 @@ public class ImageActivity extends BaseActivity {
     }
 
     private List<View> getWebImageViews() {
-
         List<View> list = new ArrayList<>();
         for (int i = 0; i < count; i++) {
             View view = View.inflate(ImageActivity.this, R.layout.item_gallery_view, null);
             ImageView iv = view.findViewById(R.id.iv);
-            GlideUtil.into(this, imageArray[i], iv, ScreenUtil.getScreenW(), (int) (0.4 * ScreenUtil.getScreenH()), R.drawable.bg_default);
+            GlideUtil.intoFitCenter(this, imageArray[i], iv, ScreenUtil.getScreenW(), ScreenUtil.getScreenH(), R.drawable.bg_default);
             list.add(view);
         }
         return list;
@@ -163,7 +163,6 @@ public class ImageActivity extends BaseActivity {
         lp.alpha = bgAlpha; //0.0-1.0
         getWindow().setAttributes(lp);
     }
-
 
     private class ImagePagerAdapter extends PagerAdapter {
         private List<View> views;

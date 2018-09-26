@@ -1,15 +1,16 @@
 package com.kasao.qintai.base;
 
-import android.content.Context;
 import android.content.Intent;
 import android.location.Location;
-import android.text.TextUtils;
 
 import com.kasao.qintai.activity.login.LoginActivity;
 import com.kasao.qintai.model.domain.User;
+import com.kasao.qintai.util.SharedPreferencesHelper;
 import com.kasao.qintaiframework.base.MyApplication;
-import com.kasao.qintaiframework.until.LogUtil;
+import com.kasao.qintaiframework.until.MyUncaughtExceptionHandler;
 import com.kasao.qintaiframework.until.ScreenUtil;
+
+import cn.jpush.android.api.JPushInterface;
 
 /**
  * 作者 :created  by suochunming
@@ -20,22 +21,18 @@ public class BaseKasaoApplication extends MyApplication {
     private static User mUser;
 
     public static void setUser(User user) {
+        if (null != user) {
+            JPushInterface.setAlias(MyApplication.Companion.getApplicaton(), 1, user.push_alias);
+        }
         mUser = user;
     }
 
     public static User getUser() {
+        if (null == mUser) {
+            mUser = SharedPreferencesHelper.getInstance(MyApplication.Companion.getApplicaton()).
+                    getObject(User.class);
+        }
         return mUser;
-    }
-
-    public static String getUserId() {
-        return mUser.user_id;
-    }
-
-    public static String getUserImg() {
-        return mUser.user_img;
-    }
-    public static String getUserName() {
-        return mUser.user_name;
     }
 
     public static Location mLocation;
@@ -43,10 +40,9 @@ public class BaseKasaoApplication extends MyApplication {
     @Override
     public void onCreate() {
         super.onCreate();
+        MyUncaughtExceptionHandler.with(this);
+        JPushInterface.setDebugMode(true);
+        JPushInterface.init(this);
         ScreenUtil.initScreen(this);
-    }
-
-    private void initLocation() {
-        mLocation = new Location(new Location("山西"));
     }
 }

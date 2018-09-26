@@ -56,7 +56,7 @@ public class BrandGridView extends BaseView {
 
     private void initVew() {
         View view = LayoutInflater.from(getContext()).inflate(R.layout.menu_gridview, this);
-        recycleView = (RecyclerView) view.findViewById(R.id.recycleView);
+        recycleView = view.findViewById(R.id.recycleView);
         GridLayoutManager gide = new GridLayoutManager(BaseKasaoApplication.Companion.getApplicaton(), 4);
         recycleView.setLayoutManager(gide);
         // 设置ItemAnimator

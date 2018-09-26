@@ -48,8 +48,7 @@ public class LodingStateView extends BaseView {
         tv = (GradientShaderTextView) findViewById(R.id.tvloading);
         // 加载自定义字体
         try {
-            //  TEXT_TYPE = Typeface.createFromAsset(getContext().getAssets(), "hhh.otf");
-
+            TEXT_TYPE = Typeface.createFromAsset(getContext().getAssets(), "kasao.otf");
         } catch (Exception e) {
             TEXT_TYPE = null;
         }

@@ -20,7 +20,9 @@ import android.text.TextUtils
 import android.util.Log
 import android.view.View
 import android.widget.*
+import com.kasao.qintai.MainActivity
 import com.kasao.qintai.R
+import com.kasao.qintai.activity.login.LoginActivity
 import com.kasao.qintai.api.ApiInterface
 import com.kasao.qintai.api.ApiManager
 import com.kasao.qintai.base.BaseKasaoApplication
@@ -33,17 +35,22 @@ import com.kasao.qintai.util.*
 import com.kasao.qintai.widget.CircleImageView
 import com.kasao.qintaiframework.base.BaseActivity
 import com.kasao.qintaiframework.http.HttpRespnse
+import com.kasao.qintaiframework.until.ActivityManager
 import com.kasao.qintaiframework.until.GsonUtil
 import com.kasao.qintaiframework.until.ToastUtil
+import io.reactivex.Observable
+import io.reactivex.Observer
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.Disposable
 import okhttp3.MediaType
 import okhttp3.RequestBody
 import okhttp3.ResponseBody
 import java.io.File
 import java.io.FileNotFoundException
 import java.io.IOException
+import java.util.concurrent.TimeUnit
 
 class ModifyUserActivity : BaseActivity(), View.OnClickListener, CompoundButton.OnCheckedChangeListener {
-
     var tv_cradphone: TextView? = null
     var username: EditText? = null
     var icon: CircleImageView? = null
@@ -80,6 +87,7 @@ class ModifyUserActivity : BaseActivity(), View.OnClickListener, CompoundButton.
 
         rb_ginfo_r2?.setOnCheckedChangeListener(this)
         rb_ginfo_r1?.setOnCheckedChangeListener(this)
+        findViewById<View>(R.id.exit).setOnClickListener(this)
         username?.setOnClickListener(View.OnClickListener { username?.setCursorVisible(true) })
         icon?.setOnClickListener(this)
         SoftKeybordUtil.setSoftKeyboardListener(this, object : SoftKeybordUtil.OnSoftKeyboardChangeListener {
@@ -90,7 +98,7 @@ class ModifyUserActivity : BaseActivity(), View.OnClickListener, CompoundButton.
                     val user = BaseKasaoApplication.getUser()
                     if (user.nickname.equals(username?.getText().toString())) {
                     } else {
-                       summbit()
+                        summbit()
                     }
                 }
             }
@@ -101,8 +109,9 @@ class ModifyUserActivity : BaseActivity(), View.OnClickListener, CompoundButton.
     var user: User? = null
 
     override fun rendView() {
+
         user = BaseKasaoApplication.getUser()
-        username?.setText(user?.nickname)
+        username?.setText(user?.nickname?.trim())
         GlideUtil.into(this, user?.user_img, icon, R.drawable.default_avater)
         if (TextUtils.isEmpty(user?.user_mobile) || "0" == user?.user_mobile) {
             tv_cradphone?.text = ("绑定手机")
@@ -111,9 +120,9 @@ class ModifyUserActivity : BaseActivity(), View.OnClickListener, CompoundButton.
             tv_cradphone?.text = (user?.user_mobile)
         }
         if (user!!.user_sex.endsWith("男")) {
-            rb_ginfo_r1?.setChecked(true)
+            rb_ginfo_r1?.isChecked = true
         } else if (user!!.user_sex.endsWith("女")) {
-            rb_ginfo_r2?.setChecked(true)
+            rb_ginfo_r2?.isChecked = true
         }
     }
 
@@ -121,6 +130,7 @@ class ModifyUserActivity : BaseActivity(), View.OnClickListener, CompoundButton.
         when (view?.getId()) {
             R.id.act_my_icon -> addimage()
             R.id.viewBack -> finish()
+            R.id.exit -> exit()
 //            R.id.tv_cradphone -> {
 //                val bundle = Bundle()
 //                bundle.putString(ParmarsValue.KEY_target, username?.getText().toString())
@@ -129,6 +139,34 @@ class ModifyUserActivity : BaseActivity(), View.OnClickListener, CompoundButton.
             else -> {
             }
         }
+    }
+
+    fun exit() {
+        Observable.timer(1, TimeUnit.SECONDS)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(object : Observer<Long> {
+                    override fun onSubscribe(d: Disposable) {
+
+                    }
+
+                    override fun onNext(value: Long?) {
+                        SharedPreferencesHelper.getInstance(this@ModifyUserActivity).removeObject(this@ModifyUserActivity, User::class.java)
+                        ActivityManager.finishAllActivity()
+                        finish()
+
+                    }
+
+                    override fun onError(e: Throwable) {
+
+                    }
+
+                    override fun onComplete() {
+                        BaseKasaoApplication.setUser(null)
+                        //  startActivity(Intent(this@ModifyUserActivity, MainActivity::class.java))
+
+                    }
+                })
+
     }
 
     override fun onCheckedChanged(radio: CompoundButton?, p1: Boolean) {
@@ -153,7 +191,7 @@ class ModifyUserActivity : BaseActivity(), View.OnClickListener, CompoundButton.
             path = ImageTools.saveBitmapToSDcard(this@ModifyUserActivity, bitmap)
         }
         var map = HashMap<String, RequestBody>()
-        map["nickname"] = toRequestBody(username?.getText().toString())
+        map["nickname"] = toRequestBody(username?.text.toString())
         map["user_sex"] = toRequestBody(sexstr)
         map["user_id"] = toRequestBody(user?.user_id!!)
         if (!path.isNullOrEmpty()) {
@@ -162,18 +200,15 @@ class ModifyUserActivity : BaseActivity(), View.OnClickListener, CompoundButton.
         }
         ApiManager.getInstance.upLoadData(ApiInterface.MODEIFYMY, map, object : HttpRespnse {
             override fun _onComplete() {
-
             }
-
             override fun _onNext(t: ResponseBody) {
                 var useDomani = GsonUtil.GsonToBean(t.string(), UserDomain::class.java)
                 if (null != useDomani && null != useDomani.data) {
+                    SharedPreferencesHelper.getInstance(applicationContext).putObject(useDomani.data)
                     BaseKasaoApplication.setUser(useDomani.data)
                     rendView()
                 }
-
             }
-
             override fun _onError(e: Throwable) {
 
             }
@@ -260,13 +295,12 @@ class ModifyUserActivity : BaseActivity(), View.OnClickListener, CompoundButton.
             } catch (e: IOException) {
                 e.printStackTrace()
             }
-
             if (Build.VERSION.SDK_INT < 24) {
                 imageUri = Uri.fromFile(outputImage)
             } else {
                 //Android 7.0系统开始 使用本地真实的Uri路径不安全,使用FileProvider封装共享Uri
                 //参数二:fileprovider绝对路径 com.dyb.testcamerademo：项目包名
-                imageUri = FileProvider.getUriForFile(this, "com.qintai.meike.fileprovider", outputImage)
+                imageUri = FileProvider.getUriForFile(this, "com.kasao.qintai.fileprovider", outputImage)
             }
             // 启动相机程序
             val intent = Intent("android.media.action.IMAGE_CAPTURE")
@@ -324,7 +358,7 @@ class ModifyUserActivity : BaseActivity(), View.OnClickListener, CompoundButton.
                     icon?.setImageBitmap(bitmap)
                     ImageTools.savePhotoToSDCard(ImageTools.compressImage(bitmap, Info.ImageSize),
                             Info.PHOTO_DIR.toString(), photoName)
-                      summbit()
+                    summbit()
                 } catch (e: FileNotFoundException) {
                     e.printStackTrace()
                 }

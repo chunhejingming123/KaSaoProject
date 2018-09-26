@@ -1,6 +1,6 @@
 package com.kasao.qintai.activity.login
 
-import android.content.Intent
+import android.text.method.PasswordTransformationMethod
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
@@ -24,6 +24,7 @@ class RegisterActivity : BaseLoginActivity() {
         findBaseView()
         etPwd = findViewById(R.id.etPwd)
         etCode = findViewById(R.id.etCode)
+        etPwd?.transformationMethod = PasswordTransformationMethod.getInstance()
         btnRegister = findViewById(R.id.btnRegister)
         layoutChange()
         rendView()

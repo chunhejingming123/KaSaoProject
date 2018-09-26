@@ -6,8 +6,10 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 
 import com.kasao.qintaiframework.until.LogUtil;
+import com.tencent.mm.opensdk.constants.ConstantsAPI;
 import com.tencent.mm.opensdk.modelbase.BaseReq;
 import com.tencent.mm.opensdk.modelbase.BaseResp;
+import com.tencent.mm.opensdk.modelbiz.WXLaunchMiniProgram;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.IWXAPIEventHandler;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
@@ -45,9 +47,17 @@ public class WXEntryActivity extends Activity implements IWXAPIEventHandler {
         finish();
     }
 
+
     @Override
     public void onResp(BaseResp baseResp) {
-        LogUtil.e("-----1111111111111111------------");
-        finish();
+
+        if (baseResp.getType() == ConstantsAPI.COMMAND_LAUNCH_WX_MINIPROGRAM) {
+            WXLaunchMiniProgram.Resp launchMiniProResp = (WXLaunchMiniProgram.Resp) baseResp;
+            String extraData = launchMiniProResp.extMsg; //对应小程序组件 <button open-type="launchApp"> 中的 app-parameter 属性
+            LogUtil.e("-----1111111111111111-------extraData=" + extraData);
+        }else{
+            finish();
+        }
+
     }
 }

@@ -102,7 +102,7 @@ class OnLineOrderActivity : BaseActivity(), View.OnClickListener {
 
     private fun getMap(): Map<String, String>? {
         var map = HashMap<String, String>()
-        uid = BaseKasaoApplication.getUserId()
+        uid = BaseKasaoApplication.getUser().user_id
         map["u_id"] = uid!!
         map["goods_id"] = goodsid!!
         if (TextUtils.isEmpty(tvNum?.text.toString())) {

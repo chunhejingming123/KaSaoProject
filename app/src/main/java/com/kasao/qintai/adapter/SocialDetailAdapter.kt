@@ -32,24 +32,27 @@ import java.util.*
  * 日期：2018/8/28 0028:16
  */
 
-class SocialDetailAdapter(context: Context, snn: SNSEntity) : BaseKSadapter<CommentEntity>() {
+class SocialDetailAdapter(context: Context) : BaseKSadapter<CommentEntity>() {
     var snsentity: SNSEntity? = null
     val mList = LinkedList<CommentEntity>()
     var mThubmble: List<ThumbModel>? = null
     var mBrowse: List<BrowseEntity>? = null
-    var mContext: Context
+    var mContext: Context = context
     private var parentNick: String? = null
     private var parentId: String? = null
     private val mHandler: Handler
     private var count = 0
     private var temptZan = 0
     private var browseCount: Int = 0
-    private val uid: String
+    private var uid: String = ""
+
+    constructor(context: Context, snn: SNSEntity) : this(context) {
+        mContext = context
+        snsentity = snn
+    }
 
     init {
-        mContext = context
-        snsentity = snn;
-        uid = BaseKasaoApplication.getUserId()
+        uid = BaseKasaoApplication.getUser().user_id
         mHandler = Handler()
     }
 
@@ -66,10 +69,10 @@ class SocialDetailAdapter(context: Context, snn: SNSEntity) : BaseKSadapter<Comm
     }
 
     override fun getContentItemCount(): Int {
-        if (null == mList || mList.isEmpty()) {
-            return 0
+        return if (null == mList || mList.isEmpty()) {
+            0
         } else {
-            return mList.size
+            mList.size
         }
     }
 
@@ -144,9 +147,9 @@ class SocialDetailAdapter(context: Context, snn: SNSEntity) : BaseKSadapter<Comm
                                     view.setLayoutParams(param)
                                     llavater?.addView(headGroupView)
                                     if (mBrowse!!.size > 99) {
-                                        tvss.setText("+\n" + mBrowse!!.size)
+                                        tvss.text = ("+\n" + mBrowse!!.size)
                                     } else {
-                                        tvss.setText("+" + mBrowse!!.size)
+                                        tvss.text = ("+" + mBrowse!!.size)
                                     }
 
                                 } else {
@@ -164,7 +167,7 @@ class SocialDetailAdapter(context: Context, snn: SNSEntity) : BaseKSadapter<Comm
                         }
                     } else {
                         browseCount = 1
-                        GlideUtil.into(mContext, BaseKasaoApplication.getUserImg(), newCircle, R.drawable.default_avater)
+                        GlideUtil.into(mContext, BaseKasaoApplication.getUser().user_img, newCircle, R.drawable.default_avater)
                         tvCount?.text = ("+1")
                     }
                 } catch (throwable: Throwable) {
@@ -183,12 +186,7 @@ class SocialDetailAdapter(context: Context, snn: SNSEntity) : BaseKSadapter<Comm
                         tv_zannumber?.text = "0"
                     }
                 }
-
-                if (null != mList) {
-                    tv_pinglunnumber?.text = mList.size.toString()
-                }
-
-
+                tv_pinglunnumber?.text = mList.size.toString()
                 viewHistory?.setOnClickListener(View.OnClickListener {
                     if (null != mINewFriendOp) {
                         mINewFriendOp?.onHistory(snsentity!!.id, browseCount, count)
@@ -200,7 +198,7 @@ class SocialDetailAdapter(context: Context, snn: SNSEntity) : BaseKSadapter<Comm
             grideview?.setHasFixedSize(true)
             if (null != snsentity && null != snsentity!!.img) {
                 val madapter = GrideViewAdapter(mContext, snsentity!!.img)
-                grideview?.setAdapter(madapter)
+                grideview?.adapter = (madapter)
             }
 
 
@@ -276,8 +274,8 @@ class SocialDetailAdapter(context: Context, snn: SNSEntity) : BaseKSadapter<Comm
         if (data == null) {
             return
         }
-     isOnlyLoadingOne=false
-             if (null != data.likes) {
+        isOnlyLoadingOne = false
+        if (null != data.likes) {
             mThubmble = data.likes
         }
         if (null != data.browse) {

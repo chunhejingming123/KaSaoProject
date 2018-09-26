@@ -19,13 +19,16 @@ import com.kasao.qintai.util.DataTypeChange
  */
 
 class MyBookAdapter : BaseKSadapter<OderCode>() {
-     var lists: MutableList<OderCode>? = null
+    var lists: MutableList<OderCode>? = null
         set(value) {
-            isOnlyLoadingOne=false
+            isOnlyLoadingOne = false
             field = value
             notifyDataSetChanged()
         }
-
+    override fun getHeaderItemCount(): Int {
+        isEmptyState = lists==null||lists?.size==0
+        return super.getHeaderItemCount()
+    }
     override fun getContentItemCount(): Int {
         if (null == lists || lists!!.isEmpty()) {
             return 0

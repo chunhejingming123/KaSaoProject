@@ -31,6 +31,10 @@ class ShopAdapter : BaseKSadapter<ShopInfo>() {
             notifyDataSetChanged()
         }
 
+    override fun getHeaderItemCount(): Int {
+        isEmptyState=(mList==null||mList?.size==0)
+        return super.getHeaderItemCount()
+    }
     override fun getContentItemCount(): Int {
         if (null == mList || mList!!.isEmpty()) {
             return 0
@@ -82,15 +86,20 @@ class ShopAdapter : BaseKSadapter<ShopInfo>() {
                 tvDes.setText(o.address)
                 val longtitud = java.lang.Double.parseDouble(o.store_y)
                 val latitud = java.lang.Double.parseDouble(o.store_x)
-                val calculateLineDistance = AMapUtils.calculateLineDistance(LatLng(longtitud, latitud), LatLng(BaseKasaoApplication.mLocation.getLatitude(), BaseKasaoApplication.mLocation.getLongitude()))
-                val b = UtilsTool.SetLengthToKm(calculateLineDistance.toDouble())
-                tvDistance.text = b
-                if (null != o.store_img && !o.store_img.isEmpty()) {
-                    if (!TextUtils.isEmpty(o.store_img.get(0).toString())) {
-                        GlideUtil.into(itemView.context, o.store_img[0].toString(), ivShoplogo, R.drawable.bg_default)
-
-                    }
+                if (null!=BaseKasaoApplication.mLocation){
+                    val calculateLineDistance = AMapUtils.calculateLineDistance(LatLng(longtitud, latitud), LatLng(BaseKasaoApplication.mLocation.getLatitude(), BaseKasaoApplication.mLocation.getLongitude()))
+                    val b = UtilsTool.SetLengthToKm(calculateLineDistance.toDouble())
+                    tvDistance.text = b
+                }else{
+                   tvDistance?.visibility=View.GONE
                 }
+                    if (null != o.store_img && !o.store_img.isEmpty()) {
+                        if (!TextUtils.isEmpty(o.store_img.get(0).toString())) {
+                            GlideUtil.into(itemView.context, o.store_img[0].toString(), ivShoplogo, R.drawable.bg_default)
+
+                        }
+                    }
+
 
             }
         }

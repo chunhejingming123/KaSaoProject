@@ -8,30 +8,53 @@
         android:normalScreens="true"
         android:smallScreens="true" />
 
-    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
+    <!-- Required -->
+    <permission
+        android:name="com.kasao.qintai.permission.JPUSH_MESSAGE"
+        android:protectionLevel="signature" />
 
+    <!-- Required -->
+    <uses-permission android:name="com.kasao.qintai.permission.JPUSH_MESSAGE" />
+    <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!-- <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" /> -->
+    <!-- <uses-permission android:name="android.permission.WRITE_SETTINGS" /> -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+
+    <!-- Optional. Required for location feature -->
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" /> <!-- 用于开启 debug 版本的应用在 6.0 系统上的层叠窗口权限 -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
         android:name=".base.BaseKasaoApplication"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@drawable/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.login.SplashActivity">
+        <meta-data
+            android:name="com.kasao.qintai.util.GlideConfiguration"
+            android:value="GlideModule" />
+
+        <activity
+            android:name=".activity.login.SplashActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/lacunch">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -88,17 +111,6 @@
         <activity
             android:name=".activity.active.RectCameraActivity"
             android:screenOrientation="portrait" />
-
-        <provider
-            android:name="android.support.v4.content.FileProvider"
-            android:authorities="com.kasao.qintai.fileprovider"
-            android:exported="false"
-            android:grantUriPermissions="true">
-            <meta-data
-                android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_path" />
-        </provider>
-
         <activity
             android:name=".activity.user.UserDetailActivity"
             android:screenOrientation="portrait" />
@@ -134,11 +146,72 @@
         <activity
             android:name=".wxapi.WXEntryActivity"
             android:exported="true"
+            android:screenOrientation="portrait"
             android:launchMode="singleTop" />
         <activity
             android:name=".activity.kayou.PublishSoicalActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".activity.ImageGridActivity"></activity>
+        <activity
+            android:name=".activity.ImageGridActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.user.MySubsidyActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.user.MyCollectionActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.user.MyCareActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.NavigationActivity"
+            android:exported="true"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <!-- 汽贸详情页面 -->
+                <data
+                    android:host="cardetail"
+                    android:scheme="kasao" />
+                <!-- 资讯详情页 -->
+                <data
+                    android:host="newsdetail"
+                    android:scheme="kasao" />
+                <data
+                    android:host="frienddetail"
+                    android:scheme="kasao" />
+                <!-- 用户信息被举报后 进入主页面 弹窗 -->
+                <data
+                    android:host="reportmsg"
+                    android:scheme="kasao" />
+            </intent-filter>
+        </activity>
+
+        <receiver
+            android:name=".receive.MyReceiver"
+            android:enabled="true"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="cn.jpush.android.intent.REGISTRATION" /> <!-- Required  用户注册SDK的intent -->
+                <action android:name="cn.jpush.android.intent.MESSAGE_RECEIVED" /> <!-- Required  用户接收SDK消息的intent -->
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED" /> <!-- Required  用户接收SDK通知栏信息的intent -->
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_OPENED" /> <!-- Required  用户打开自定义通知栏的intent -->
+                <action android:name="cn.jpush.android.intent.CONNECTION" /> <!-- 接收网络变化 连接/断开 since 1.6.3 -->
+                <category android:name="com.kasao.qintai" />
+            </intent-filter>
+        </receiver>
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.kasao.qintai.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_path" />
+        </provider>
     </application>
 
 </manifest>

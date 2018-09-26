@@ -21,6 +21,10 @@ class CarSystemAdapter : BaseKSadapter<CarDetailEntity>() {
     private var list: List<CarDetailEntity>? = null
     val FOOTDIS = 1
     val FOOTNULL = 2
+    override fun getHeaderItemCount(): Int {
+        isEmptyState=(list==null||list?.size==0)
+        return super.getHeaderItemCount()
+    }
     override fun getContentItemCount(): Int {
         return if (list == null || list?.isEmpty()!!) 0 else list?.size!!
     }

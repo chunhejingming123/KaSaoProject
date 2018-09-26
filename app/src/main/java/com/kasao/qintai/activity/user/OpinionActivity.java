@@ -4,23 +4,18 @@ import android.text.TextUtils;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.kasao.qintai.R;
 import com.kasao.qintai.api.ApiInterface;
 import com.kasao.qintai.api.ApiManager;
 import com.kasao.qintai.base.BaseKasaoApplication;
-import com.kasao.qintai.model.RtnSuss;
-import com.kasao.qintai.widget.TopBar;
 import com.kasao.qintaiframework.base.BaseActivity;
 import com.kasao.qintaiframework.http.HttpRespnse;
-import com.kasao.qintaiframework.until.GsonUtil;
 import com.kasao.qintaiframework.until.ToastUtil;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.io.IOException;
 import java.util.HashMap;
 
 import okhttp3.ResponseBody;
@@ -37,15 +32,14 @@ public class OpinionActivity extends BaseActivity implements OnClickListener {
     @Override
     public void findView() {
 
-        ((ImageView) findViewById(R.id.ivBack)).setBackgroundResource(R.drawable.icon_return_black);
+        (findViewById(R.id.ivBack)).setBackgroundResource(R.drawable.icon_return_black);
         View ll_back = findViewById(R.id.viewBack);
         ll_back.setOnClickListener(this);
         findViewById(R.id.tvRight).setOnClickListener(this);
-
-        TextView tv_title = (TextView) findViewById(R.id.tvTitle);
+        TextView tv_title = findViewById(R.id.tvTitle);
         tv_title.setText("意见反馈");
         ((TextView) findViewById(R.id.tvRight)).setText("发送");
-        et_title = (EditText) findViewById(R.id.et_title);
+        et_title = findViewById(R.id.et_title);
     }
 
 
@@ -66,8 +60,8 @@ public class OpinionActivity extends BaseActivity implements OnClickListener {
     }
 
     private void sumbit() {
-        HashMap<String, String> param = new HashMap<String, String>();
-        param.put("u_id", BaseKasaoApplication.getUserId());
+        HashMap<String, String> param = new HashMap<>();
+        param.put("u_id", BaseKasaoApplication.getUser().user_id);
         param.put("content", et_title.getText().toString());
         param.put("type", "2");
         param.put("applies", "android");
@@ -79,12 +73,7 @@ public class OpinionActivity extends BaseActivity implements OnClickListener {
 
             @Override
             public void _onNext(@NotNull ResponseBody t) {
-                try {
-                    RtnSuss rtn = GsonUtil.Companion.GsonToBean(t.string(), RtnSuss.class);
-                    finish();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                finish();
             }
 
             @Override

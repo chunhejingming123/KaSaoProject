@@ -24,8 +24,6 @@ import com.kasao.qintaiframework.base.BaseFragment
 import com.kasao.qintaiframework.base.MyApplication
 import com.kasao.qintaiframework.http.HttpRespnse
 import com.kasao.qintaiframework.until.GsonUtil
-import com.kasao.qintaiframework.until.LogUtil
-import com.kasao.qintaiframework.until.ScreenUtil
 import okhttp3.ResponseBody
 
 /**
@@ -38,6 +36,7 @@ class HomeFrament : BaseFragment() {
     var mSwipterfresh: SwipeRefreshLayout? = null
     var mRecycleView: RecyclerView? = null
     var homeAdapter: HomeAdapter? = null
+    // var skeletonScreen: SkeletonScreen? = null
     override fun onInflater(inflater: LayoutInflater, container: ViewGroup?): View {
         rootView = inflater.inflate(R.layout.fragment_home, container, false)
         return rootView!!
@@ -114,6 +113,15 @@ class HomeFrament : BaseFragment() {
             onloadData()
             mSwipterfresh?.isRefreshing = false
         }
+
+//
+//        var root = rootView?.findViewById<View>(R.id.rootView)
+//        skeletonScreen = Skeleton.bind(root)
+//                .load(R.layout.activity_home_skeletonscreen)
+//                .duration(10000)
+//                .color(R.color.shimmer_color)
+//                .angle(0)
+//                .show()
     }
 
     override fun onloadData() {

@@ -71,7 +71,7 @@ class ReportFriendActivity : BaseActivity(), View.OnClickListener {
 
     private fun sumbit() {
         var map = HashMap<String, String>()
-        var uid = BaseKasaoApplication.getUserId()
+        var uid = BaseKasaoApplication.getUser().user_id
         if (!uid.isNotEmpty() || !id.isNotEmpty())
             return
         map?.put("u_id", uid)

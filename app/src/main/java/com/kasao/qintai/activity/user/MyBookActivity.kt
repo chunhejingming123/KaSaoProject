@@ -35,7 +35,7 @@ class MyBookActivity : BaseActivity() {
 
     override fun onloadData() {
         val map = HashMap<String, String>()
-        map["u_id"] = BaseKasaoApplication.getUserId()
+        map["u_id"] = BaseKasaoApplication.getUser().user_id
         ApiManager.getInstance.loadDataByParmars(ApiInterface.ORDER_LIST, map, object : HttpRespnse {
             override fun _onComplete() {
             }
@@ -44,6 +44,8 @@ class MyBookActivity : BaseActivity() {
                 var domain = GsonUtil.GsonToBean(t.string(), OrderCodedomain::class.java)
                 if (null != domain && null != domain.data) {
                     adapter?.lists = domain.data
+                }else{
+                    adapter?.setNullData()
                 }
             }
 

@@ -120,15 +120,14 @@ class SocialDetailsActivity : BaseActivity() {
             }
 
             override fun _onNext(t: ResponseBody) {
-            var rtn=GsonUtil.GsonToBean(t.string(),RtnSuss::class.java)
-                if(null!=rtn&&rtn.code.equals("200")){
+                var rtn = GsonUtil.GsonToBean(t.string(), RtnSuss::class.java)
+                if (null != rtn && rtn.code=="200") {
                     val intent = Intent()
                     intent.putExtra(ParmarsValue.KEY_WEATHER_DEL, true)
                     setResult(RESULT_OK, intent)
                     finish()
                 }
             }
-
 
             override fun _onError(e: Throwable) {
             }
@@ -165,7 +164,10 @@ class SocialDetailsActivity : BaseActivity() {
             id = uri.getQueryParameter("id")
         }
         if (TextUtils.isEmpty(id)) {
-            snsentity = intent.getSerializableExtra("data") as SNSEntity
+            var sns = intent.getSerializableExtra("data") as SNSEntity
+            if (null != sns) {
+                snsentity = sns
+            }
             id = intent.getStringExtra("id")
         }
         if (TextUtils.isEmpty(id)) {
@@ -176,10 +178,13 @@ class SocialDetailsActivity : BaseActivity() {
         isCanDel = intent.getBooleanExtra(ParmarsValue.KEY_CAN_DEL, false)
         if (null != snsentity) {
             isBrowse = snsentity!!.browse_type
+            adapter = SocialDetailAdapter(this, snsentity!!)
+        } else {
+            adapter = SocialDetailAdapter(this)
         }
         initRecycle(recycleView!!, null)
         viewDel?.visibility = (if (isCanDel!!) View.VISIBLE else View.GONE)
-        adapter = SocialDetailAdapter(this, snsentity!!)
+
         recycleView?.adapter = adapter
         adapter?.setAction(object : SocialDetailAdapter.ISocialDeAction {
             override fun setReply(comment: CommentEntity, positions: Int) {
@@ -209,8 +214,9 @@ class SocialDetailsActivity : BaseActivity() {
                 startActivity(intent)
             }
 
-            override fun onDelete(id: String, position: Int) {
-                if (position > -1) {
+            override fun onDelete(id: String, positions: Int) {
+                if (positions > -1) {
+                    position = positions
                     val dynami = DialogeDelComment(this@SocialDetailsActivity)
                     dynami.showDialoge(object : DialogeDelComment.ODialogeDel {
                         override fun del() {
@@ -274,6 +280,9 @@ class SocialDetailsActivity : BaseActivity() {
         if (null == commentLikedomain) {
             return
         }
+        if (null != commentLikedomain.detail) {
+            snsentity = commentLikedomain.detail
+        }
         if (null != commentLikedomain.browse) {
             tvBrowse?.text = commentLikedomain.browse.size.toString()
             borowseCount = commentLikedomain.browse.size
@@ -290,12 +299,12 @@ class SocialDetailsActivity : BaseActivity() {
         if (snsentity?.type.equals("2")) {
             drawable = ContextComp.getDrawable(R.drawable.icon_thumb_normal)
             tvPrise?.setCompoundDrawablesWithIntrinsicBounds(drawable, null, null, null)
-            tvPrise?.setText("赞")
+            tvPrise?.text="赞"
             tvPrise?.setTextColor(resources.getColor(R.color.color_666666))
         } else {
             drawable = ContextComp.getDrawable(R.drawable.icon_thumb_press)
             tvPrise?.setCompoundDrawablesWithIntrinsicBounds(drawable, null, null, null)
-            tvPrise?.setText("已赞")
+            tvPrise?.text="已赞"
             tvPrise?.setTextColor(resources.getColor(R.color.color_ee303c))
         }
     }
@@ -304,7 +313,7 @@ class SocialDetailsActivity : BaseActivity() {
     private fun sendBrowseCount() {
         val map = HashMap<String, String>()
         map["article_id"] = id!!
-        map["u_id"] = BaseKasaoApplication.getUserId()
+        map["u_id"] = BaseKasaoApplication.getUser().user_id
         ApiManager.getInstance.loadDataByParmars(ApiInterface.CAR_BROWAWCOUNT, map, object : HttpRespnse {
             override fun _onComplete() {
             }
@@ -323,10 +332,9 @@ class SocialDetailsActivity : BaseActivity() {
             return
         }
         val paramzan = HashMap<String, String>()
-        paramzan["u_id"] = BaseKasaoApplication.getUserId()
+        paramzan["u_id"] = BaseKasaoApplication.getUser().user_id
         paramzan["af_id"] = snsentity!!.id
         paramzan["applies"] = "android"
-
         ApiManager.getInstance.loadDataByParmars(ApiInterface.CAR_ZAN, paramzan, object : HttpRespnse {
             override fun _onComplete() {
             }
@@ -372,17 +380,17 @@ class SocialDetailsActivity : BaseActivity() {
             ToastUtil.showAlter("说点什么吧")
         } else {
             var params = HashMap<String, String>()
-            params["u_id"] = BaseKasaoApplication.getUserId()//"3942
+            params["u_id"] = BaseKasaoApplication.getUser().user_id//"3942
             params["af_id"] = id!!
             params["applies"] = "android"
             params["title"] = title
             var entity = CommentEntity()
-            entity.u_id = BaseKasaoApplication.getUserId()//"3942
+            entity.u_id = BaseKasaoApplication.getUser().user_id//"3942
             entity.title = title
             entity.parent_id = "0"
             entity.isMine = true
 
-            entity.setNickname(BaseKasaoApplication.getUserName())
+            entity.setNickname(BaseKasaoApplication.getUser().user_name)
 
             ApiManager.getInstance.loadDataByParmars(ApiInterface.CAR_SETFRIENDSPINGLUN, params, object : HttpRespnse {
                 override fun _onComplete() {
@@ -421,7 +429,7 @@ class SocialDetailsActivity : BaseActivity() {
         }
         val repley = HashMap<String, String>()
         repley["article_id"] = id!!
-        repley["u_id"] = BaseKasaoApplication.getUserId()
+        repley["u_id"] = BaseKasaoApplication.getUser().user_id
         var rename = if (TextUtils.isEmpty(commentEntity?.getNickname())) commentEntity?.user_mobile else commentEntity?.getNickname()
         repley["re_name"] = rename!!
         if (commentEntity!!.isMine) {

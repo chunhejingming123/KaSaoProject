@@ -5,9 +5,8 @@ import com.kasao.qintaiframework.until.ScreenUtil
 
 open class MyApplication : Application() {
     companion object {
-        val isDebug: Boolean = true
-        var applicaton = Helper.instance
-
+        val isDebug: Boolean = false
+     public var applicaton = Helper.instance
 
     }
 
@@ -17,6 +16,6 @@ open class MyApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        applicaton = this
+      applicaton=this
     }
 }
